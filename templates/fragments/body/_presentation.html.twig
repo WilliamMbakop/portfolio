@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="card mb-4">
+		<img class="card-img-top" src="{{ asset('images/presentation-img-1.jpg') }}" alt="Description de l'image">
+		<div class="card-body pt-0 card-img-overlay d-flex align-items-center justify-content-center">
+			<div class="row">
+				<div class="col-5 text-center">
+					<img src="https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
+
+				</div>
+				<div class="col-6">
+					<h2 class="lead">
+						<b>William Mbakop</b>
+					</h2>
+					<p class="text-muted text-sm">
+						Technicien Systèmes et réseaux  Passionné de cybersécurité
+					</p>
+					<ul class="ml-4 mb-0 fa-ul text-muted">
+						<li class="small">
+							<span class="fa-li">
+								<i class="fas fa-lg fa-building"></i>
+							</span>
+							Ile-de-france</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content px-2 mt-3">
+		<p>
+			Après dix ans d'expérience professionnelle dans le secteur de la banque et de l'assurance, j'ai choisi de me réorienter vers l'informatique, en commençant par le développement web, puis en me dirigeant vers les systèmes et réseaux. Mon objectif est désormais de me spécialiser dans la cybersécurité.
+		</p>
+	</div>
+{% endblock %}

@@ -1,0 +1,94 @@
+{# {% set isQuizPath =  app.request.pathinfo == path('app_quiz_index')  or  app.request.pathinfo == path('app_quiz_stats') %} #}
+{# {% set isAdminPath =  app.request.pathinfo == path('app_quiz_list-questions')  or  app.request.pathinfo == path('app_quiz_add-question') %} #}
+
+	<aside class="main-sidebar sidebar-dark-primary elevation-4"> <div class="sidebar">
+		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+			<div class="image">
+				<img src="#" class="img-circle elevation-2" alt="User Image">
+			</div>
+		</div>
+		<nav class="mt-2">
+			<ul
+				class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+				{# PRESENTATION #}
+				<li class="nav-item">
+					<a href="{{ path('app_presentation') }}" class="nav-link active">
+
+						<i class="nav-icon fas fa-copy"></i>
+						<p>
+							Présentation
+						</p>
+					</a>
+				</li>
+				{# EXPERIENCES PROFESSIONNELLES #}
+				<li class="nav-item">
+					<a href="{{ path('app_parcours') }}" class="nav-link">
+
+						<i class="nav-icon fas fa-copy"></i>
+						<p>
+							Parcours professionnel
+						</p>
+					</a>
+				</li>
+				<li
+					class="nav-item mt-3">
+					{# <a href="#" class="nav-link {{ isQuizPath ? 'active' }}">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																						                    <a href="#" class="nav-link {{ isQuizPath ? 'active' }}"> #}
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-tachometer-alt"></i>
+						<p>
+							Compétences
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="{{ path('app_sys_res') }}" class="nav-link {{ app.request.get('_route') == 'app_sys-res' ? 'active' }}">
+								<i class="nav-icon fas fa-gamepad mr-0"></i>
+								<p>Systèmes et réseaux</p>
+							</a>
+						</li>
+						<li
+							class="nav-item">
+							{# <a href="{{ path('app_quiz_stats') }}" class="nav-link {{ app.request.get('_route') == 'app_quiz_stats' ? 'active' }}"> #}
+							<a href="{{ path('app_dev_web') }}" class="nav-link ">
+
+								<i class="nav-icon fas fa-chart-pie mr-0"></i>
+								<p>Développement web</p>
+
+							</a>
+						</li>
+						<li
+							class="nav-item">
+							{# <a href="{{ path('app_quiz_stats') }}" class="nav-link {{ app.request.get('_route') == 'app_quiz_stats' ? 'active' }}"> #}
+							<a href="{{ path('app_certification') }}" class="nav-link ">
+
+								<i class="nav-icon fas fa-chart-pie mr-0"></i>
+								<p>Certifications</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a href="{{ path('app_projets_techniques') }}" class="nav-link active">
+						<i class="nav-icon fas fa-copy"></i>
+						<p>
+							Projets techniques
+						</p>
+					</a>
+				</li>
+				<li
+					class="nav-item">
+					{# <a href="{{ path('app_quiz_stats') }}" class="nav-link {{ app.request.get('_route') == 'app_quiz_stats' ? 'active' }}"> #}
+					<a href="{{ path('app_veille_technologique') }}" class="nav-link">
+
+						<i class="nav-icon fas fa-copy"></i>
+						<p>
+							Veille technologique
+						</p>
+					</a>
+				</li>
+			</p>
+		</nav>
+	</div>
+</aside>

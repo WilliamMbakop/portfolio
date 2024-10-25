@@ -1,0 +1,11 @@
+<footer class="main-footer {{ app.request.get('_route') == 'app_register' or  app.request.get('_route') == 'app_login' ? 'mx-0' }}">
+	<strong>
+		<a href="{{ app.request.server.get('WEBSITE_URI') }}">{{ app.request.server.get('WEBSITE_NAME') }}</a>
+	</strong>
+	-
+	{{ "now"|date("Y") }}
+	<div class="float-right d-none d-sm-inline-block">
+		<b>Version</b>
+		{{ app.request.server.get('WEBSITE_VERSION') }}
+	</div>
+</footer>

@@ -1,3 +1,55 @@
-body {
-    background-color: skyblue;
+/* assets/styles/app.css */
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import "~select2";
+@import "~admin-lte";
+
+
+* {
+    font-family: Ubuntu Mono, Fira Code, "Courier New", Monaco, sans-serif !important;
+}
+
+i {
+    font-family: 'Font Awesome 5 Free', serif !important;
+}
+
+.select2-selection {
+    height: 35px;
+}
+
+[class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active, [class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active:hover, [class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active:focus {
+    background-color: rgba(239, 182, 76, 0);
+    color: rgb(239, 182, 76) !important;
+}
+
+label:not(.form-check-label):not(.custom-file-label) {
+     font-weight: normal;
+}
+
+.dark-mode .progress {
+    background: #bcc5ce;
+}
+
+.quiz-link:hover,
+.main-header .nav-link:hover,
+.login-box a:hover,
+.register-box a:hover{
+  color: rgb(239, 182, 76) !important;
+    transition: 0.2s ease-in-out;
+}
+
+.main-header .nav-link.active {
+    color: rgb(239, 182, 76) !important;
+}
+
+.login-box, .register-box {
+    width: 95vw;
+    max-width: 500px;
+}
+
+.register-page {
+    height: calc(100vh - 60px);
+}
+
+.card-header img {
+    width: 130px;
 }
