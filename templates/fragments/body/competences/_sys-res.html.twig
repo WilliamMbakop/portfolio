@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="card">
+		<div class="card-body d-flex">
+			<div class="col-2">
+				<img class="col-12" src="{{ asset('images/sys-res/Linux.png') }}" alt="Linux">
+				<p class="text-center mt-2">
+					Linux
+				</p>
+			</div>
+			<div class="col-2">
+				<img class="col-12" src="{{ asset('images/sys-res/Windows.png') }}" alt="Windows">
+				<p class="text-center mt-2">Windows</p>
+			</div>
+			<div class="col-2">
+				<img class="col-12" src="{{ asset('images/sys-res/VmWare-Workstation.png') }}" alt="VmWare Workstation">
+				<p class="text-center mt-2">VmWare Workstation</p>
+			</div>
+			<div class="col-2">
+				<img class="col-12" src="{{ asset('images/sys-res/Proxmox.png') }}" alt="Proxmox">
+				<p class="text-center mt-2">Proxmox</p>
+			</div>
+			<div class="col-2">
+				<img class="col-12" src="{{ asset('images/sys-res/VirtualBox.png') }}" alt="VirtualBox">
+				<p class="text-center mt-2">VirtualBox</p>
+			</div>
+			<div class="col-2">
+				<img class="col-12" src="{{ asset('images/sys-res/Wallix.png') }}" alt="Wallix">
+				<p class="text-center mt-2">Wallix</p>
+			</div>
+		</div>
+		<div class="card-body d-flex">
+			<div class="col-2">
+				<img class="col-12" src="{{ asset('images/sys-res/Cisco-Packet-Tracer.png') }}" alt="Cisco Packet Tracer">
+				<p class="text-center mt-2">Cisco Packet Tracer</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

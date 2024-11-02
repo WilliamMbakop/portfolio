@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<section class="content">
+		<div class="row">
+			<div class="col-12" id="accordion">
+				<div class="card card-primary card-outline">
+					<a class="d-block w-100 collapsed" data-toggle="collapse" href="#collapseOne" aria-expanded="false">
+						<div class="card-header">
+							<h4 class="card-title w-100">
+								Atelier RGPG | CNIL
+							</h4>
+						</div>
+					</a>
+					<div id="collapseOne" class="collapse" data-parent="#accordion" style="">
+						<div class="card-body">
+							<p>Date d'obtention : Octobre 2024</p>
+							<p>Modules :</p>
+							<ul>
+								<li>Le RGPD et ses notions clés</li>
+								<li>Les principes de la protection des données</li>
+								<li>Les responsabilités des acteurs</li>
+								<li>Le DPO et les outils de la conformités</li>
+								<li>Les collectivités territoriales</li>
+							</ul>
+							<p>
+								<a href="https://atelier-rgpd.cnil.fr/" target="_blank">En savoir plus :</a>
+							</p>
+						</div>
+
+					</div>
+				</div>
+				<div class="card card-warning card-outline">
+					<a class="d-block w-100 collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false">
+						<div class="card-header">
+							<h4 class="card-title w-100">
+								MOOC SecNumacadémie | ANSSI
+							</h4>
+						</div>
+					</a>
+					<div id="collapseTwo" class="collapse" data-parent="#accordion" style="">
+						<div class="card-body">
+							<p>Date d'obtention : Octobre 2023</p>
+							<p>Modules :</p>
+							<ul>
+								<li>Panorama de la SSI</li>
+								<li>Sécurité de l’authentification</li>
+								<li>Sécurité sur Internet</li>
+								<li>Sécurité du poste de travail et nomadisme</li>
+							</ul>
+							<p>
+								<a href="https://secnumacademie.gouv.fr/" target="_blank">En savoir plus</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="card card-primary card-outline">
+					<a class="d-block w-100" data-toggle="collapse" href="#collapseThree">
+						<div class="card-header">
+							<h4 class="card-title w-100">
+								Titre Professionnel Développeur web et web mobile
+							</h4>
+						</div>
+					</a>
+					<div id="collapseThree" class="collapse" data-parent="#accordion">
+						<div class="card-body">
+							<p>Date d'obtention : Janvier 2024</p>
+							<p>Compétences :</p>
+							<ul>
+								<li>Développer les parties front-end et back-end d'une application web ou web mobile sécurisée</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="card card-warning card-outline">
+					<a class="d-block w-100" data-toggle="collapse" href="#collapseFour">
+						<div class="card-header">
+							<h4 class="card-title w-100">
+								Maîtrise en Droit privé spécialité Juriste d'entreprise
+							</h4>
+						</div>
+					</a>
+					<div id="collapseFour" class="collapse" data-parent="#accordion">
+						<div class="card-body">
+							<p>Date d'obtention : 2008</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

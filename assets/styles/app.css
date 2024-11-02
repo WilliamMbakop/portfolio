@@ -1,0 +1,69 @@
+/* assets/styles/app.css */
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import "~select2";
+@import "~admin-lte";
+
+
+* {
+    font-family: Ubuntu Mono, Fira Code, "Courier New", Monaco, sans-serif !important;
+}
+
+i {
+    font-family: 'Font Awesome 5 Free', serif !important;
+}
+
+.aside-subtitle {
+   font-size: 2px !important;
+}
+
+.select2-selection {
+    height: 35px;
+}
+
+[class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active, [class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active:hover, [class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active:focus {
+    background-color: rgba(239, 182, 76, 0);
+    color: rgb(239, 182, 76) !important;
+}
+
+label:not(.form-check-label):not(.custom-file-label) {
+     font-weight: normal;
+}
+
+.dark-mode .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
+.dark-mode .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
+  background-color: #D3D3D3 !important;
+  color: #000000 !important;
+}
+
+.time-label span {
+    background-color: gray !important;
+    font-weight: 300  !important;
+}
+
+
+.main-header .nav-link:hover {
+  color: rgb(239, 182, 76) !important;
+    transition: 0.2s ease-in-out;
+}
+
+.main-header .nav-link.active {
+    color: rgb(239, 182, 76) !important;
+}
+
+.timeline-icon {
+  background-color: gray;
+  border-radius: 50%;
+  font-size: 16px;
+  height: 30px;
+  width: 30px;
+  left: 18px;
+  line-height: 30px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  padding: 4px;
+}
+
+.timeline-header {
+    color: #343a40 !important;
+}
