@@ -36,7 +36,6 @@ label:not(.form-check-label):not(.custom-file-label) {
 }
 
 .time-label span {
-    background-color: gray !important;
     font-weight: 300  !important;
 }
 
@@ -66,4 +65,43 @@ label:not(.form-check-label):not(.custom-file-label) {
 
 .timeline-header {
     color: #343a40 !important;
+}
+
+ .project-card {
+    transition: transform 0.2s; /* Effet de survol */
+    display: flex;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    height: 100%; /* Assure que toutes les cartes prennent la même hauteur */
+    justify-content: space-between; /* Espace uniformément entre les éléments */
+}
+.project-card img {
+    max-height: 200px; /* Limite la hauteur de l'image */
+    object-fit: cover; /* Assure que l'image couvre la zone sans déformer */
+}
+.card-body {
+    flex-grow: 1; /* Permet à la zone de texte de prendre le reste de l'espace disponible */
+    display: flex;
+    flex-direction: column; /* Aligne le titre, la description, et le bouton verticalement */
+    justify-content: space-between; /* Espace uniformément entre le titre, la description, et le bouton */
+}
+.project-card:hover {
+    transform: scale(1.05); /* Zoom sur la carte au survol */
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 0); }
+    25% { transform: translate(-1px, 0); }
+    50% { transform: translate(1px, 0); }
+    75% { transform: translate(-1px, 0); }
+    100% { transform: translate(0, 0); }
+}
+
+.image-container,
+.nav-link:hover {
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover,
+.nav-link:hover:hover {
+    animation: shake 0.5s;
 }

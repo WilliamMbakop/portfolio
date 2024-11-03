@@ -5,25 +5,33 @@
 				<i class="fas fa-bars"></i>
 			</a>
 		</li>
-	</ul>
-	<ul class="navbar-nav ml-auto">
 		<li class="nav-item">
-			<a class="nav-link" data-widget="fullscreen" href="#" role="button">
+			<a class="nav-link" data-widget="fullscreen" href="#" role="button" title="Plein écran">
 				<i class="fas fa-expand-arrows-alt"></i>
 			</a>
 		</li>
+
 		{% if app.request.server.get('RIGHT_SIDEBAR') %}
 			<li class="nav-item">
-				<a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
+				<a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button" title="Panneau de contrôle">
 					<i class="fas fa-th-large"></i>
 				</a>
 			</li>
 		{% endif %}
-		<li
-			class="nav-item">{# <a class="nav-link" data-widget="logout" href="{{ path('app_logout') }}" role="button"
-																												                   title="Déconnexion">
-																												                    <i class="fas fa-power-off"></i>
-																												                </a> #}
+
+	</ul>
+	<ul
+		class="navbar-nav ml-auto align-items-center">
+		<!-- Ajout de align-items-center -->
+		<li class="nav-item">
+			<a class="nav-link" href="https://www.linkedin.com/in/mbakopwilliam/" target="_blank" role="button" title="LinkedIn">
+				{{ ux_icon('devicon:linkedin', {height: '20px', width: '20px', 'aria-hidden': true, }) }}
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="https://github.com/WilliamMbakop" target="_blank" role="button" title="Microsoft Teams">
+				{{ ux_icon('akar-icons:github-fill', {height: '20px', width: '20px', 'aria-hidden': true, }) }}
+			</a>
 		</li>
 	</ul>
 </nav>

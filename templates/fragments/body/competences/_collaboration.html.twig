@@ -2,22 +2,25 @@
 
 {% block body %}
 	<div class="card">
-		<div class="card-body d-flex">
-			<div class="col-2">
-				<img class="col-12" src="{{ asset('images/collaboration/git.png') }}" alt="Git">
-				<p class="text-center mt-2">
-					Git
-				</p>
-			</div>
-			<div class="col-2">
-				<img class="col-12" src="{{ asset('images/collaboration/github.png') }}" alt="Github">
-				<p class="text-center mt-2">Github</p>
-			</div>
-			<div class="col-2">
-				<img class="col-12" src="{{ asset('images/collaboration/jira.png') }}" alt="Jira">
-				<p class="text-center mt-2">Jira</p>
-			</div>
-			{# AJOUTER TRELLO #}
+		<div class="card-body d-flex flex-column flex-md-row flex-wrap align-items-center justify-content-md-center justify-content-xl-start">
+			{% set images = [
+                {'src': 'images/sys-res/Linux.png', 'alt': 'Linux', 'name': 'Linux'},
+                {'src': 'images/sys-res/Windows.png', 'alt': 'Windows', 'name': 'Windows'},
+                {'src': 'images/sys-res/VmWare-Workstation.png', 'alt': 'VmWare Workstation', 'name': 'VmWare Workstation'},
+                {'src': 'images/sys-res/Proxmox.png', 'alt': 'Proxmox', 'name': 'Proxmox'},
+                {'src': 'images/sys-res/VirtualBox.png', 'alt': 'VirtualBox', 'name': 'VirtualBox'},
+                {'src': 'images/sys-res/VirtualBox.png', 'alt': 'VirtualBox', 'name': 'VirtualBox'},
+                {'src': 'images/sys-res/VirtualBox.png', 'alt': 'VirtualBox', 'name': 'VirtualBox'},
+                {'src': 'images/sys-res/VirtualBox.png', 'alt': 'VirtualBox', 'name': 'VirtualBox'},
+                {'src': 'images/sys-res/VirtualBox.png', 'alt': 'VirtualBox', 'name': 'VirtualBox'}
+            ] %}
+
+			{% for image in images %}
+				<div class="d-flex flex-column mx-2 my-3 col-6 col-md-4 col-xl-2 image-container">
+					<img class="mx-auto" alt="{{ image.alt }}" src="{{ asset(image.src) }}" style="max-width: 100%;">
+					<p class="mx-auto mt-2 text-center">{{ image.name }}</p>
+				</div>
+			{% endfor %}
 		</div>
 	</div>
 {% endblock %}
