@@ -8,13 +8,13 @@
 		<meta name="author" content="{{ app.request.server.get('AUTHOR_NAME') }}">
 		<link rel="icon" href="{{ asset('images/favicon-16x16.png') }}" type="image/png">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+		<script defer src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
 
 		<title>
 			{% block title %}
-				Accueil
+				Portfolio William Mbakop
 			{% endblock %}
 		</title>
 
@@ -27,20 +27,27 @@
 		{% endblock %}
 
 	</head>
-	<body class="dark-mode hold-transition sidebar-mini layout-fixed min">
+	<body {{ stimulus_controller('reload-content') }} class="dark-mode hold-transition sidebar-mini layout-fixed min">
 		<div class="wrapper">
 			{# {% include 'fragments/_flash-messages.html.twig' %} #}
 
-			{# <div class="preloader flex-column justify-content-center align-items-center"> <img class="animation__shake" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/115px-Firefox_logo%2C_2019.svg.png" alt="AdminLTELogo" height="60" width="60"> </div> #}
+			{# Preloader #}
+
+				<div class="preloader flex-column justify-content-center align-items-center"> <img class="animation__shake" src="{{ asset('images/avatar.jpeg') }}" alt="AdminLTELogo">
+			</div>
+
 
 			{% include 'fragments/nav/_topbar.html.twig' %}
 			{% include 'fragments/nav/_aside.html.twig' %}
 
-				<div class="content-wrapper"> <section class="content mt-4 px-5">
+			<div class="content-wrapper">
+				<section class="content mt-4 px-5">
+
 					<div class="container-fluid p-0">
 						<div class="card-body">
 
-							<div class="my-2"> {% block body %}{% endblock %}
+							<div class="my-2" {{ stimulus_target('reload-content', 'content') }}> {% block body %}{% endblock %}
+
 								</div>
 							</section>
 						</div>
@@ -55,3 +62,4 @@
 			</div>
 		</body>
 	</html>
+</body></html>

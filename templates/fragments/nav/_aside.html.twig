@@ -1,67 +1,61 @@
-{% set isCompetencesPath =  app.request.pathinfo == path('app_sys_res')  or  app.request.pathinfo == path('app_dev_web') or app.request.pathinfo == path('app_collaboration') or app.request.pathinfo == path('app_certification') %}
-
-
-{# {% set isAdminPath =  app.request.pathinfo == path('app_quiz_list-questions')  or  app.request.pathinfo == path('app_quiz_add-question') %} #}
-
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" {{ stimulus_controller('menu-link') }}>
 	<div class="sidebar">
 		<nav class="mt-2" style="border-bottom: 1px solid #4f5962">
 			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-				<li class="nav-item mb-3">
-					<a href="{{ path('app_presentation') }}" class="nav-link {{ app.request.get('_route') == 'app_presentation' ? 'active' }}">
+				<li class="nav-item mb-3" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'presentation' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 0 }) }}>
+					<a class="nav-link">
 						{{ ux_icon('icon-park-solid:people', {height: '18px', width: '18px', 'aria-hidden': true}) }}
-
 						<p>
 							Présentation
 						</p>
 					</a>
 				</li>
-				<li class="nav-item mb-3">
-					<a href="{{ path('app_parcours') }}" class="nav-link {{ app.request.get('_route') == 'app_parcours' ? 'active' }} ">
+				<li class="nav-item mb-3" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'parcours' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 1 }) }}>
+					<a class="nav-link">
 						{{ ux_icon('ic:round-work-history', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 						<p>
 							Parcours pro.
 						</p>
 					</a>
 				</li>
-				<li class="nav-item mb-3 {{ isCompetencesPath ? 'menu-open' }} ">
-					<a href="#" class="nav-link {{ isCompetencesPath ? 'active' }}">
+				<li class="nav-item mb-3" {{stimulus_target('menu-link', 'competences')}}>
+					<a class="nav-link">
 						{{ ux_icon('game-icons:stairs-goal', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 						<p>
 							Compétences
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="{{ path('app_sys_res') }}" class="nav-link {{ app.request.get('_route') == 'app_sys_res' ? 'active' }}">
+					<ul class="nav nav-treeview" {{stimulus_target('menu-link', 'navtreeview')}}>
+						<li class="nav-item" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'competences/sys-res' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 3 }) }}>
+							<a class="nav-link">
 								{{ ux_icon('fluent-mdl2:my-network', {height: '18px', width: '18px', 'aria-hidden': true, style: 'margin-left: 16px;'}) }}
 								<p>Systèmes/Réseaux</p>
 							</a>
 						</li>
-						<li class="nav-item">
-							<a href="{{ path('app_dev_web') }}" class="nav-link {{ app.request.get('_route') == 'app_dev_web' ? 'active' }}">
+						<li class="nav-item" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'competences/dev-web' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 4 }) }}>
+							<a class="nav-link {{ app.request.get('_route') == 'app_dev_web' ? 'active' }}">
 								{{ ux_icon('material-symbols:developer-mode-tv', {height: '18px', width: '18px', 'aria-hidden': true, style: 'margin-left: 16px;'}) }}
 								<p>Développement web</p>
 							</a>
 						</li>
-						<li class="nav-item">
-							<a href="{{ path('app_collaboration') }}" class="nav-link {{ app.request.get('_route') == 'app_collaboration' ? 'active' }}">
+						<li class="nav-item" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'competences/collaboration' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 5 }) }}>
+							<a class="nav-link {{ app.request.get('_route') == 'app_collaboration' ? 'active' }}">
 								{{ ux_icon('fluent:people-team-16-regular', {height: '18px', width: '18px', 'aria-hidden': true, style: 'margin-left: 16px;'}) }}
 
 								<p>Collaboration</p>
 							</a>
 						</li>
-						<li class="nav-item">
-							<a href="{{ path('app_certification') }}" class="nav-link {{ app.request.get('_route') == 'app_certification' ? 'active' }}">
+						<li class="nav-item" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'competences/certifications' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 6 }) }}>
+							<a class="nav-link {{ app.request.get('_route') == 'app_certification' ? 'active' }}">
 								{{ ux_icon('vaadin:diploma', {height: '18px', width: '18px', 'aria-hidden': true, style: 'margin-left: 16px;'}) }}
 								<p>Certifications</p>
 							</a>
 						</li>
 					</ul>
 				</li>
-				<li class="nav-item mb-3">
-					<a href="{{ path('app_projets_techniques') }}" class="nav-link {{ app.request.get('_route') == 'app_projets_techniques' ? 'active' }} ">
+				<li class="nav-item mb-3" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'projets-techniques' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 7 }) }}>
+					<a class="nav-link {{ app.request.get('_route') == 'app_projets_techniques' ? 'active' }} ">
 						{{ ux_icon('mage:light-bulb-fill', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 
 						<p>
@@ -69,10 +63,8 @@
 						</p>
 					</a>
 				</li>
-
-
-				<li class="nav-item mb-3">
-					<a href="{{ path('app_veille_technologique') }}" class="nav-link {{ app.request.get('_route') == 'app_veille_technologique' ? 'active' }}">
+				<li class="nav-item mb-3" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'veille-technologique' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 8 }) }}>
+					<a class="nav-link">
 						{{ ux_icon('carbon:cloud-monitoring', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 						<p>
 							Veille techno.
