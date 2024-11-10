@@ -3,7 +3,7 @@
 		<nav class="mt-2" style="border-bottom: 1px solid #4f5962">
 			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 				<li class="nav-item mb-3" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'presentation' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 0 }) }}>
-					<a class="nav-link">
+					<a class="nav-link active">
 						{{ ux_icon('icon-park-solid:people', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 						<p>
 							Présentation
