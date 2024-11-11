@@ -1,11 +1,10 @@
 <aside class="main-sidebar sidebar-dark-warning elevation-4">
-
     <div class="sidebar">
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column sidebar" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <li class="nav-item">
-                	<a class="nav-link active" href="{{ path('app_admin_presentation') }}">
+                	<a class="nav-link {{ app.request.get('_route') == 'app_admin_presentation' ? 'active' }}" href="{{ path('app_admin_presentation') }}">
 						{{ ux_icon('icon-park-solid:people', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 						<p>
 							Présentation
@@ -13,31 +12,39 @@
 					</a>
                 </li>
 				<li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_admin_parcours') }}">
+                    <a class="nav-link {{ app.request.get('_route') == 'app_admin_parcours' ? 'active' }}" href="{{ path('app_admin_parcours') }}">
 						{{ ux_icon('ic:round-work-history', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 						<p>
 							Parcours pro.
 						</p>
 					</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link">
-						{{ ux_icon('game-icons:stairs-goal', {height: '18px', width: '18px', 'aria-hidden': true}) }}
+				<li class="nav-item">
+                    <a class="nav-link {{ app.request.get('_route') == 'app_admin_category' ? 'active' }}" href="{{ path('app_admin_category') }}">
+						{{ ux_icon('mdi:category-plus', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 						<p>
-							Compétences
+							Categories
+						</p>
+					</a>
+                </li>				
+                <li class="nav-item">
+                    <a class="nav-link {{ app.request.get('_route') == 'app_admin_techno' ? 'active' }}" href="{{ path('app_admin_techno') }}">
+						{{ ux_icon('hugeicons:nano-technology', {height: '18px', width: '18px', 'aria-hidden': true}) }}
+						<p>
+							Technos
 						</p>
 					</a>
                 </li>
 				<li class="nav-item">
-                    <a class="nav-link">
-						{{ ux_icon('vaadin:diploma', {height: '18px', width: '18px', 'aria-hidden': true}) }}
+                    <a class="nav-link {{ app.request.get('_route') == 'app_admin_certification' ? 'active' }}" href="{{ path('app_admin_certification') }}">
+						{{ ux_icon('game-icons:stairs-goal', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 						<p>
 							Certifications
 						</p>
 					</a>
                 </li>
 				<li class="nav-item">
-                    <a class="nav-link">
+                    <a class="nav-link {{ app.request.get('_route') == 'app_admin_project' ? 'active' }}" href="{{ path('app_admin_project') }}">
 						{{ ux_icon('mage:light-bulb-fill', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 						<p>
 							Projets
@@ -45,10 +52,18 @@
 					</a>
                 </li>
 				<li class="nav-item">
-                    <a class="nav-link">
+                    <a class="nav-link {{ app.request.get('_route') == 'app_admin_veille' ? 'active' }}" href="{{ path('app_admin_veille') }}">
 						{{ ux_icon('carbon:cloud-monitoring', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 						<p>
 							Veille techno
+						</p>
+					</a>
+                </li>
+				<li class="nav-item">
+                    <a class="nav-link {{ app.request.get('_route') == 'app_admin_socialnetwork' ? 'active' }}" href="{{ path('app_admin_socialnetwork') }}">
+						{{ ux_icon('carbon:cloud-monitoring', {height: '18px', width: '18px', 'aria-hidden': true}) }}
+						<p>
+							Réseaux sociaux
 						</p>
 					</a>
                 </li>

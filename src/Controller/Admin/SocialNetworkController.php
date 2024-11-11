@@ -2,30 +2,30 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Parcours;
-use App\Form\ParcoursType;
-use App\Repository\ParcoursRepository;
+use App\Entity\SocialNetwork;
+use App\Form\SocialNetworkType;
+use App\Repository\SocialNetworkRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class ParcoursController extends AbstractController
+class SocialNetworkController extends AbstractController
 {
-    #[Route('/admin/parcours', name: 'app_admin_parcours')]
-    public function index(Request $request, ParcoursRepository $parcoursRepository): response
+    #[Route('/admin/reseaux-sociaux', name: 'app_admin_socialnetwork')]
+    public function index(Request $request, SocialNetworkRepository $socialnetworkRepository): response
     {
 
-        $template = $request->get('ajax') ? 'admin/parcours/_list.html.twig' : 'admin/parcours/index.html.twig';
+        $template = $request->get('ajax') ? 'admin/socialnetwork/_list.html.twig' : 'admin/socialnetwork/index.html.twig';
 
         return $this->render($template, [
-            'parcourss' => $parcoursRepository->findAll(),
+            'socialnetworks' => $socialnetworkRepository->findAll(),
         ]);
     }
 
     /**
-     * Add a new Parcours entity.
+     * Add a new SocialNetwork entity.
      *
      * @param EntityManagerInterface $entityManager The entity manager responsible for persisting the new entity.
      * @param Request $request The current request.
@@ -33,16 +33,16 @@ class ParcoursController extends AbstractController
      * @return Response The response object.
      *
      */
-    #[Route(path: '/admin/parcours/ajouter', name: 'app_admin_parcours_add')]
+    #[Route(path: '/admin/reseaux-sociaux/ajouter', name: 'app_admin_socialnetwork_add')]
     public function add(EntityManagerInterface $entityManager, Request $request): Response
     {
 
-        $parcours = new Parcours();
-        $form = $this->createForm(ParcoursType::class, $parcours);
+        $socialnetwork = new SocialNetwork();
+        $form = $this->createForm(SocialNetworkType::class, $socialnetwork);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($parcours);
+            $entityManager->persist($socialnetwork);
             $entityManager->flush();
 
             if ($request->isXmlHttpRequest()) {
@@ -51,7 +51,7 @@ class ParcoursController extends AbstractController
             }
         }
 
-        $template = 'admin/parcours/add.html.twig';
+        $template = 'admin/socialnetwork/add.html.twig';
 
         return $this->render(
             $template,
@@ -69,9 +69,9 @@ class ParcoursController extends AbstractController
 
 
     /**
-     * Edit Parcours entity.
+     * Edit SocialNetwork entity.
      *
-     * @param Parcours $Parcours The Parcours entity to edit.
+     * @param SocialNetwork $SocialNetwork The SocialNetwork entity to edit.
      * @param EntityManagerInterface $entityManager The entity manager responsible for persisting the changes.
      * @param Request $request The current request.
      *
@@ -79,10 +79,10 @@ class ParcoursController extends AbstractController
      *
      */
 
-    #[Route(path: '/admin/parcours/{id}/modifier', name: 'app_admin_parcours_edit', requirements: ['id' => '\d+'])]
-    public function edit(Parcours $parcours, EntityManagerInterface $entityManager, Request $request): Response
+    #[Route(path: '/admin/reseaux-sociaux/{id}/modifier', name: 'app_admin_socialnetwork_edit', requirements: ['id' => '\d+'])]
+    public function edit(SocialNetwork $socialnetwork, EntityManagerInterface $entityManager, Request $request): Response
     {
-        $form = $this->createForm(ParcoursType::class, $parcours);
+        $form = $this->createForm(SocialNetworkType::class, $socialnetwork);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -94,10 +94,10 @@ class ParcoursController extends AbstractController
                 return new Response(null, 204);
             }
 
-            return $this->redirectToRoute('app_admin_parcours');
+            return $this->redirectToRoute('app_admin_socialnetwork');
         }
 
-        return $this->render('admin/parcours/add.html.twig', [
+        return $this->render('admin/socialnetwork/add.html.twig', [
             'form' => $form,
         ]);
     }
@@ -105,9 +105,9 @@ class ParcoursController extends AbstractController
 
 
     /**
-     * Delete a Parcours
+     * Delete a SocialNetwork
      *
-     * @param Parcours $Parcours The Parcours to be deleted
+     * @param SocialNetwork $SocialNetwork The SocialNetwork to be deleted
      * @param EntityManagerInterface $entityManager The entity manager used for database operations
      * @param Request $request The current HTTP request
      *
@@ -116,16 +116,16 @@ class ParcoursController extends AbstractController
      * @throws AccessDeniedException If the user does not have the ROLE_ADMIN role
      */
 
-    #[Route(path: '/admin/parcours/{id}/supprimer', name: 'app_admin_parcours_delete', requirements: ['id' => '\d+'])]
-    public function delete(Parcours $Parcours, EntityManagerInterface $entityManager, Request $request): Response
+    #[Route(path: '/admin/reseaux-sociaux/{id}/supprimer', name: 'app_admin_socialnetwork_delete', requirements: ['id' => '\d+'])]
+    public function delete(SocialNetwork $SocialNetwork, EntityManagerInterface $entityManager, Request $request): Response
     {
 
-        if ($this->isCsrfTokenValid('delete' . $Parcours->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($Parcours);
+        if ($this->isCsrfTokenValid('delete' . $SocialNetwork->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($SocialNetwork);
             $entityManager->flush();
             $this->addFlash('success', "");
         }
 
-        return $this->redirectToRoute('app_admin_parcours');
+        return $this->redirectToRoute('app_admin_socialnetwork');
     }
 }

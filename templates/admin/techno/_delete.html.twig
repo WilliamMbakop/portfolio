@@ -1,0 +1,14 @@
+<form action="{{ path('app_admin_techno_delete', { id: techno.id }) }}"
+      method="post"
+      class="p-0 d-inline-block"
+        {{ stimulus_controller('submit-confirm', {
+            title: 'Souhaitez-vous supprimer cette techno ?',
+            icon: 'warning'
+
+        }) }}
+        {{ stimulus_action('submit-confirm', 'onSubmit') }}
+>
+    <input type="hidden" name="_token"
+           value="{{ csrf_token('delete' ~ techno.id) }}">
+    <button class="bg-transparent border-0 text-red p-0" style="font-size: 25px;">{{ ux_icon('ep:delete') }}</button> 
+</form>

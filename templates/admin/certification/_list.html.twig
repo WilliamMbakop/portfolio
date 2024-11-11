@@ -1,0 +1,50 @@
+{% include 'admin/fragments/_flash-messages.html.twig' %}
+
+<div class="card-header">
+    <h3 class="card-title text-bold">Les certifications</h3>
+</div>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="col-2">Nom</th>
+                    <th class="col-6">Description</th>
+                    <th class="col-1">Date</th>
+                    <th class="col-2">Url</th>
+                    <th class="col-1 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for certification in certifications %}
+                    <tr {{ stimulus_controller('modal-form', {
+                        formUrl: path('app_admin_certification_edit', {id: certification.id})
+                    }) }}>
+                        <td>{{ certification.name }}</td>
+                        <td class="certification-description">{{ certification.description|raw }}</td>
+                        <td>{{ certification.dateobtention|date('d/m/Y') }}</td>
+                        <td>{{ certification.url }}</td>
+
+                        <td>
+                            <div class="text-center d-flex justify-content-center border-bottom-1">
+                                {{ include('admin/fragments/_modal.html.twig', { modalTitle: 'Modifier la certification' }) }}
+
+                                <p class="text-warning" {{ stimulus_action('modal-form', 'openModal', 'click') }} 
+                                   style="font-size: 25px; margin: 0 10px;">
+                                    {{ ux_icon('flowbite:edit-outline') }}
+                                </p>
+
+                                {% include 'admin/certification/_delete.html.twig' %}
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">Aucune certification trouvée!</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\PresentationRepository;
+use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -10,10 +12,9 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploadableField;
 use Vich\Uploadable;
 
-
 #[Vich\Uploadable]
-#[ORM\Entity(repositoryClass: PresentationRepository::class)]
-class Presentation
+#[ORM\Entity(repositoryClass: ProjectRepository::class)]
+class Project
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -23,8 +24,6 @@ class Presentation
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-
-
     #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
@@ -32,24 +31,25 @@ class Presentation
     private ?int $imageSize = null;
 
 
-    #[ORM\Column(length: 255)]
-    private ?string $job = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $passion = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $localization = null;
+    #[ORM\Column(length: 500)]
+    private ?string $resume = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $tel = null;
+    private ?string $url = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $email = null;
+    /**
+     * @var Collection<int, Techno>
+     */
+    #[ORM\ManyToMany(targetEntity: Techno::class, inversedBy: 'projects')]
+    private Collection $techno;
 
+    public function __construct()
+    {
+        $this->techno = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -67,6 +67,7 @@ class Presentation
 
         return $this;
     }
+
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -119,38 +120,15 @@ class Presentation
         return $this->imageSize;
     }
 
-    public function getJob(): ?string
+
+    public function getResume(): ?string
     {
-        return $this->job;
+        return $this->resume;
     }
 
-    public function setJob(string $job): static
+    public function setResume(string $resume): static
     {
-        $this->job = $job;
-
-        return $this;
-    }
-
-    public function getPassion(): ?string
-    {
-        return $this->passion;
-    }
-
-    public function setPassion(string $passion): static
-    {
-        $this->passion = $passion;
-
-        return $this;
-    }
-
-    public function getLocalization(): ?string
-    {
-        return $this->localization;
-    }
-
-    public function setLocalization(string $localization): static
-    {
-        $this->localization = $localization;
+        $this->resume = $resume;
 
         return $this;
     }
@@ -167,26 +145,38 @@ class Presentation
         return $this;
     }
 
-    public function getTel(): ?string
+    public function getUrl(): ?string
     {
-        return $this->tel;
+        return $this->url;
     }
 
-    public function setTel(?string $tel): static
+    public function setUrl(?string $url): static
     {
-        $this->tel = $tel;
+        $this->url = $url;
 
         return $this;
     }
 
-    public function getEmail(): ?string
+    /**
+     * @return Collection<int, Techno>
+     */
+    public function getTechno(): Collection
     {
-        return $this->email;
+        return $this->techno;
     }
 
-    public function setEmail(?string $email): static
+    public function addTechno(Techno $techno): static
     {
-        $this->email = $email;
+        if (!$this->techno->contains($techno)) {
+            $this->techno->add($techno);
+        }
+
+        return $this;
+    }
+
+    public function removeTechno(Techno $techno): static
+    {
+        $this->techno->removeElement($techno);
 
         return $this;
     }

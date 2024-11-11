@@ -1,0 +1,51 @@
+<div class="col-12 d-flex justify-content-center">
+    {{ form_errors(form) }}
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    
+                   <div class="form-group">
+                        <!-- Label -->
+                        <label for="{{ form.name.vars.id }}" class="form-label d-block text-left font-weight-bold">{{ form_label(form.name) }}</label>
+                        <!-- Input Field -->
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }} <!-- Ajout d'une classe de contrôle de formulaire Bootstrap -->
+                        </div>
+
+                        <!-- Affichage des erreurs -->
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(form.name) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- Label -->
+                        <label for="{{ form.icone.vars.id }}" class="form-label d-block text-left font-weight-bold">{{ form_label(form.icone) }}</label>
+                        <!-- Input Field -->
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.icone, {'attr': {'class': 'form-control'}}) }} <!-- Ajout d'une classe de contrôle de formulaire Bootstrap -->
+                        </div>
+
+                        <!-- Affichage des erreurs -->
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(form.icone) }}
+                        </div>
+                    </div>
+
+                     <div class="form-group">
+                        <!-- Label -->
+                        <label for="{{ form.url.vars.id }}" class="form-label d-block text-left font-weight-bold">{{ form_label(form.url) }}</label>
+                        <!-- Input Field -->
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.url, {'attr': {'class': 'form-control'}}) }} <!-- Ajout d'une classe de contrôle de formulaire Bootstrap -->
+                        </div>
+
+                        <!-- Affichage des erreurs -->
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(form.url) }}
+                        </div>
+                    </div>
+                    
+                    {{ form_end(form) }}
+                </div>
+
+</div>

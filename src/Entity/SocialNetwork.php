@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Repository\SocialNetworkRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,11 +17,12 @@ class SocialNetwork
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $picture = null;
 
     #[ORM\Column(length: 255)]
     private ?string $url = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $icone = null;
 
     public function getId(): ?int
     {
@@ -39,17 +41,7 @@ class SocialNetwork
         return $this;
     }
 
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
 
-    public function setPicture(string $picture): static
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
 
     public function getUrl(): ?string
     {
@@ -59,6 +51,18 @@ class SocialNetwork
     public function setUrl(string $url): static
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getIcone(): ?string
+    {
+        return $this->icone;
+    }
+
+    public function setIcone(string $icone): static
+    {
+        $this->icone = $icone;
 
         return $this;
     }

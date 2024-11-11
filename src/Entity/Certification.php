@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CertificationsRepository;
+use App\Repository\CertificationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CertificationsRepository::class)]
-class Certifications
+#[ORM\Entity(repositoryClass: CertificationRepository::class)]
+class Certification
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,7 +21,12 @@ class Certifications
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $date_obtention = null;
+    private ?\DateTimeImmutable $dateobtention = null;
+
+    public function __construct()
+    {
+        $this->dateobtention = new \DateTimeImmutable();
+    }
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $url = null;
@@ -57,12 +62,12 @@ class Certifications
 
     public function getDateObtention(): ?\DateTimeImmutable
     {
-        return $this->date_obtention;
+        return $this->dateobtention;
     }
 
-    public function setDateObtention(\DateTimeImmutable $date_obtention): static
+    public function setDateObtention(\DateTimeImmutable $dateobtention): static
     {
-        $this->date_obtention = $date_obtention;
+        $this->dateobtention = $dateobtention;
 
         return $this;
     }

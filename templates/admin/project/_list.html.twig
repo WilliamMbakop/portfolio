@@ -1,0 +1,69 @@
+{% include 'admin/fragments/_flash-messages.html.twig' %}
+
+<div class="card-header">
+    <h3 class="card-title text-bold">Les projets</h3>
+</div>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="col-1">Nom</th>
+                    <th class="col-1">Photo</th>
+                    <th class="col-2">Résumé</th>
+                    <th class="col-4">Description</th>
+                    <th class="col-2">Url</th>
+                    <th class="col-1">Technos</th>
+                    <th class="col-1 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                    <tr {{ stimulus_controller('modal-form', {
+                        formUrl: path('app_admin_project_edit', {id: project.id})
+                    }) }}>
+                        <td>{{ project.name }}</td>
+                        <td>
+                            <img src="{{ vich_uploader_asset(project, 'imageFile') }}"
+                                 alt="Photo de {{ project.name }}"
+                                 title="Photo de {{ project.name }}"
+                                 class="img-circle elevation-2"
+                                 style="max-width: 50px; max-height: 50px;">
+                        </td>
+                        <td class="project-resume">{{ project.resume|raw }}</td>
+                        <td class="project-description">{{ project.description|raw }}</td>
+                        <td>{{ project.url }}</td>
+                        <td>
+                            <ul>
+                                {% for techno in project.techno %}
+                                    <li>{{ techno.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>
+                            <div class="text-center d-flex justify-content-center border-bottom-1">
+                                <!-- Premier élément : Modal -->
+                                {{ include('admin/fragments/_modal.html.twig', { modalTitle: 'Modifier le projet' }) }}
+
+                                <!-- Deuxième élément : Icône et texte -->
+                                <p class="text-warning" {{ stimulus_action('modal-form', 'openModal', 'click') }}
+                                   style="font-size: 25px; margin: 0 10px;">
+                                    {{ ux_icon('flowbite:edit-outline') }}
+                                </p>
+
+                                <!-- Troisième élément : Delete -->
+                                {% include 'admin/project/_delete.html.twig' %}
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <!-- Applique correctement le colspan ici sans ajouter de classes col-* -->
+                        <td colspan="7" class="text-center">Aucun projet trouvé!</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

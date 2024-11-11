@@ -137,7 +137,8 @@ button.badge:hover {
 }
 
 .presentation-description p,
-.parcours-description p {
+.parcours-description p,
+.certification-description p {
     margin-bottom: 0px !important;
 }
 

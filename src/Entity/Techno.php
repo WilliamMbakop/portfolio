@@ -2,18 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\PresentationRepository;
-use Doctrine\DBAL\Types\Types;
+use App\Repository\TechnoRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploadableField;
-use Vich\Uploadable;
-
 
 #[Vich\Uploadable]
-#[ORM\Entity(repositoryClass: PresentationRepository::class)]
-class Presentation
+#[ORM\Entity(repositoryClass: TechnoRepository::class)]
+class Techno
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -23,8 +21,6 @@ class Presentation
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-
-
     #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
@@ -32,24 +28,26 @@ class Presentation
     private ?int $imageSize = null;
 
 
-    #[ORM\Column(length: 255)]
-    private ?string $job = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $passion = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $localization = null;
-
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(length: 500)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $tel = null;
+    private ?string $url = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $email = null;
+    /**
+     * @var Collection<int, Project>
+     */
+    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'techno')]
+    private Collection $projects;
 
+    #[ORM\ManyToOne(inversedBy: 'technos')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -88,6 +86,7 @@ class Presentation
         }
     }
 
+
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
@@ -119,42 +118,6 @@ class Presentation
         return $this->imageSize;
     }
 
-    public function getJob(): ?string
-    {
-        return $this->job;
-    }
-
-    public function setJob(string $job): static
-    {
-        $this->job = $job;
-
-        return $this;
-    }
-
-    public function getPassion(): ?string
-    {
-        return $this->passion;
-    }
-
-    public function setPassion(string $passion): static
-    {
-        $this->passion = $passion;
-
-        return $this;
-    }
-
-    public function getLocalization(): ?string
-    {
-        return $this->localization;
-    }
-
-    public function setLocalization(string $localization): static
-    {
-        $this->localization = $localization;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -167,26 +130,53 @@ class Presentation
         return $this;
     }
 
-    public function getTel(): ?string
+    public function getUrl(): ?string
     {
-        return $this->tel;
+        return $this->url;
     }
 
-    public function setTel(?string $tel): static
+    public function setUrl(?string $url): static
     {
-        $this->tel = $tel;
+        $this->url = $url;
 
         return $this;
     }
 
-    public function getEmail(): ?string
+    /**
+     * @return Collection<int, Project>
+     */
+    public function getProjects(): Collection
     {
-        return $this->email;
+        return $this->projects;
     }
 
-    public function setEmail(?string $email): static
+    public function addProject(Project $project): static
     {
-        $this->email = $email;
+        if (!$this->projects->contains($project)) {
+            $this->projects->add($project);
+            $project->addTechno($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Project $project): static
+    {
+        if ($this->projects->removeElement($project)) {
+            $project->removeTechno($this);
+        }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }

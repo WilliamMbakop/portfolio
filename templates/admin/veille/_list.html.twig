@@ -1,0 +1,48 @@
+{% include 'admin/fragments/_flash-messages.html.twig' %}
+
+<div class="card-header">
+    <h3 class="card-title text-bold">Les veilles</h3>
+</div>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="col-2">Nom</th>
+                    <th class="col-7">Description</th>
+                    <th class="col-2">Url</th>
+                    <th class="col-1 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for veille in veilles %}
+                    <tr {{ stimulus_controller('modal-form', {
+                        formUrl: path('app_admin_veille_edit', {id: veille.id})
+                    }) }}>
+                        <td>{{ veille.name }}</td>
+                        <td class="veille-description">{{ veille.description|raw }}</td>
+                        <td>{{ veille.url }}</td>
+
+                        <td>
+                            <div class="text-center d-flex justify-content-center border-bottom-1">
+                                {{ include('admin/fragments/_modal.html.twig', { modalTitle: 'Modifier la veille' }) }}
+
+                                <p class="text-warning" {{ stimulus_action('modal-form', 'openModal', 'click') }} 
+                                   style="font-size: 25px; margin: 0 10px;">
+                                    {{ ux_icon('flowbite:edit-outline') }}
+                                </p>
+
+                                {% include 'admin/veille/_delete.html.twig' %}
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">Aucune veille trouvée!</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

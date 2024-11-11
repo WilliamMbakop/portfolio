@@ -1,0 +1,51 @@
+{% include 'admin/fragments/_flash-messages.html.twig' %}
+<div class="card-header">
+    <h3 class="card-title text-bold">Les technos</h3>
+</div>
+<div class="card-body">
+    <table class="table table-bordered table-hover table-responsive">
+        <thead>
+        <tr>
+            <th class="col-1">Catégorie</th>
+            <th class="col-2">Nom</th>
+            <th class="col-2">Image</th>
+            <th class="col-4">Description</th>
+            <th class="col-2">Url</th>
+            <th class="col-1 text-center ">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for techno in technos %}
+              <tr {{ stimulus_controller('modal-form', {
+                formUrl: path('app_admin_techno_edit', {id:techno.id})
+            }) }}>
+                    <td> {{techno.category}} </td>
+                    <td> {{techno.name}} </td>
+                    <td> <img src="{{ vich_uploader_asset(techno, 'imageFile') }}"
+                                alt="Photo de {{techno.name }}"
+                                title="Photo de {{ techno.name }}"
+                                class="img-circle elevation-2"
+                                style="max-width: 50px; max-height: 50px;"> </td>
+                    <td class="techno-description"> {{techno.description|raw}} </td>
+                    <td> {{techno.url}} </td>
+                    <td>
+                        <div class="text-center d-flex justify-content-center border-bottom-1">
+                            <!-- Premier élément : Modal -->
+                            {{ include ("admin/fragments/_modal.html.twig", { modalTitle: 'Modifier la techno' }) }}
+
+                            <!-- Deuxième élément : Icône et texte -->
+                            <p class="text-warning" {{ stimulus_action('modal-form', 'openModal', 'click') }} style="font-size: 25px; margin: 0 10px;">
+                                {{ ux_icon('flowbite:edit-outline') }}
+                            </p>
+
+                            <!-- Troisième élément : Delete -->
+                            {% include 'admin/techno/_delete.html.twig' %}
+                        </div>
+                    </td>
+             </tr>
+        {% else %}
+            <td colspan="5" class="text-center"> Aucune techno trouvée!</td>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

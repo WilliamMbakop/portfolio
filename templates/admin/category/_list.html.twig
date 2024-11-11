@@ -1,0 +1,47 @@
+{% include 'admin/fragments/_flash-messages.html.twig' %}
+
+<div class="card-header">
+    <h3 class="card-title text-bold">Les catégories</h3>
+</div>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <!-- Définir la largeur des colonnes ici avec style -->
+                    <th style="width: 80%;">Nom</th>
+                    <th style="width: 20%;" class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                    <tr {{ stimulus_controller('modal-form', {
+                        formUrl: path('app_admin_category_edit', {id: category.id})
+                    }) }}>
+                        <td>{{ category.name }}</td>
+                        <td>
+                            <div class="text-center d-flex justify-content-center border-bottom-1">
+                                <!-- Premier élément : Modal -->
+                                {{ include('admin/fragments/_modal.html.twig', { modalTitle: 'Modifier la catégorie' }) }}
+
+                                <!-- Deuxième élément : Icône et texte -->
+                                <p class="text-warning" {{ stimulus_action('modal-form', 'openModal', 'click') }} 
+                                   style="font-size: 25px; margin: 0 10px;">
+                                    {{ ux_icon('flowbite:edit-outline') }}
+                                </p>
+
+                                <!-- Troisième élément : Delete -->
+                                {% include 'admin/category/_delete.html.twig' %}
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="2" class="text-center">Aucune catégorie trouvée!</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

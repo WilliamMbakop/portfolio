@@ -2,30 +2,30 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Parcours;
-use App\Form\ParcoursType;
-use App\Repository\ParcoursRepository;
+use App\Entity\Veille;
+use App\Form\VeilleType;
+use App\Repository\VeilleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class ParcoursController extends AbstractController
+class VeilleController extends AbstractController
 {
-    #[Route('/admin/parcours', name: 'app_admin_parcours')]
-    public function index(Request $request, ParcoursRepository $parcoursRepository): response
+    #[Route('/admin/veille', name: 'app_admin_veille')]
+    public function index(Request $request, VeilleRepository $veilleRepository): response
     {
 
-        $template = $request->get('ajax') ? 'admin/parcours/_list.html.twig' : 'admin/parcours/index.html.twig';
+        $template = $request->get('ajax') ? 'admin/veille/_list.html.twig' : 'admin/veille/index.html.twig';
 
         return $this->render($template, [
-            'parcourss' => $parcoursRepository->findAll(),
+            'veilles' => $veilleRepository->findAll(),
         ]);
     }
 
     /**
-     * Add a new Parcours entity.
+     * Add a new Veille entity.
      *
      * @param EntityManagerInterface $entityManager The entity manager responsible for persisting the new entity.
      * @param Request $request The current request.
@@ -33,16 +33,16 @@ class ParcoursController extends AbstractController
      * @return Response The response object.
      *
      */
-    #[Route(path: '/admin/parcours/ajouter', name: 'app_admin_parcours_add')]
+    #[Route(path: '/admin/veille/ajouter', name: 'app_admin_veille_add')]
     public function add(EntityManagerInterface $entityManager, Request $request): Response
     {
 
-        $parcours = new Parcours();
-        $form = $this->createForm(ParcoursType::class, $parcours);
+        $veille = new Veille();
+        $form = $this->createForm(VeilleType::class, $veille);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($parcours);
+            $entityManager->persist($veille);
             $entityManager->flush();
 
             if ($request->isXmlHttpRequest()) {
@@ -51,7 +51,7 @@ class ParcoursController extends AbstractController
             }
         }
 
-        $template = 'admin/parcours/add.html.twig';
+        $template = 'admin/veille/add.html.twig';
 
         return $this->render(
             $template,
@@ -69,9 +69,9 @@ class ParcoursController extends AbstractController
 
 
     /**
-     * Edit Parcours entity.
+     * Edit Veille entity.
      *
-     * @param Parcours $Parcours The Parcours entity to edit.
+     * @param Veille $Veille The Veille entity to edit.
      * @param EntityManagerInterface $entityManager The entity manager responsible for persisting the changes.
      * @param Request $request The current request.
      *
@@ -79,10 +79,10 @@ class ParcoursController extends AbstractController
      *
      */
 
-    #[Route(path: '/admin/parcours/{id}/modifier', name: 'app_admin_parcours_edit', requirements: ['id' => '\d+'])]
-    public function edit(Parcours $parcours, EntityManagerInterface $entityManager, Request $request): Response
+    #[Route(path: '/admin/veille/{id}/modifier', name: 'app_admin_veille_edit', requirements: ['id' => '\d+'])]
+    public function edit(Veille $veille, EntityManagerInterface $entityManager, Request $request): Response
     {
-        $form = $this->createForm(ParcoursType::class, $parcours);
+        $form = $this->createForm(VeilleType::class, $veille);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -94,10 +94,10 @@ class ParcoursController extends AbstractController
                 return new Response(null, 204);
             }
 
-            return $this->redirectToRoute('app_admin_parcours');
+            return $this->redirectToRoute('app_admin_veille');
         }
 
-        return $this->render('admin/parcours/add.html.twig', [
+        return $this->render('admin/veille/add.html.twig', [
             'form' => $form,
         ]);
     }
@@ -105,9 +105,9 @@ class ParcoursController extends AbstractController
 
 
     /**
-     * Delete a Parcours
+     * Delete a Veille
      *
-     * @param Parcours $Parcours The Parcours to be deleted
+     * @param Veille $Veille The Veille to be deleted
      * @param EntityManagerInterface $entityManager The entity manager used for database operations
      * @param Request $request The current HTTP request
      *
@@ -116,16 +116,16 @@ class ParcoursController extends AbstractController
      * @throws AccessDeniedException If the user does not have the ROLE_ADMIN role
      */
 
-    #[Route(path: '/admin/parcours/{id}/supprimer', name: 'app_admin_parcours_delete', requirements: ['id' => '\d+'])]
-    public function delete(Parcours $Parcours, EntityManagerInterface $entityManager, Request $request): Response
+    #[Route(path: '/admin/veille/{id}/supprimer', name: 'app_admin_veille_delete', requirements: ['id' => '\d+'])]
+    public function delete(Veille $Veille, EntityManagerInterface $entityManager, Request $request): Response
     {
 
-        if ($this->isCsrfTokenValid('delete' . $Parcours->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($Parcours);
+        if ($this->isCsrfTokenValid('delete' . $Veille->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($Veille);
             $entityManager->flush();
             $this->addFlash('success', "");
         }
 
-        return $this->redirectToRoute('app_admin_parcours');
+        return $this->redirectToRoute('app_admin_veille');
     }
 }
