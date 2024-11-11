@@ -1,0 +1,48 @@
+{% include 'admin/fragments/_flash-messages.html.twig' %}
+<div class="card-header">
+    <h3 class="card-title text-bold">Les expériences professionnelles</h3>
+</div>
+<div class="card-body">
+    <table class="table table-bordered table-hover table-responsive">
+        <thead>
+        <tr>
+            <th class="col-1">Date de début</th>
+            <th class="col-1">Date de fin</th>
+            <th class="col-2">Poste</th>
+            <th class="col-1">Entreprise</th>
+            <th class="col-5">Missions</th>
+            <th class="col-2 text-center ">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for parcours in parcourss %}
+              <tr {{ stimulus_controller('modal-form', {
+                formUrl: path('app_admin_parcours_edit', {id:parcours.id})
+            }) }}> 
+                <td> {{ parcours.datedeb|date('d/m/Y') }} </td>
+                <td> {{ parcours.datefin|date('d/m/Y') }} </td>
+                <td> {{parcours.job}} </td>
+                <td> {{parcours.company}} </td>
+                <td class="parcours-description"> {{parcours.missions|raw}} </td>
+                <td>
+                <div class="text-center d-flex justify-content-center border-bottom-1">
+    <!-- Premier élément : Modal -->
+    {{ include ("admin/fragments/_modal.html.twig", { modalTitle: 'Modifier le parcours' }) }}
+
+    <!-- Deuxième élément : Icône et texte -->
+    <p class="text-warning" {{ stimulus_action('modal-form', 'openModal', 'click') }} style="font-size: 25px; margin: 0 10px;">
+        {{ ux_icon('flowbite:edit-outline') }}
+    </p>
+
+    <!-- Troisième élément : Delete -->
+    {% include 'admin/parcours/_delete.html.twig' %}
+    </div>
+</td>
+
+            </tr>
+        {% else %}
+            <td colspan="5" class="text-center"> Aucune expérience trouvée!</td>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

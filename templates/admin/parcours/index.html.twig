@@ -1,0 +1,26 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %} Espace admin | Parcours {% endblock %}
+
+{% block body %}
+   <div class="mt-5 col-md-11 mx-auto position-relative" {{ stimulus_controller('reload-content', {
+        url: path('app_admin_parcours', {ajax: 1})
+    }) }}
+         data-action="modal-form:success->reload-content#refreshFormContent"
+    >
+    <div class="col-12 d-flex justify-content-end">
+      <div class="badge bg-dark mb-2 p-2 border-0"
+           {{ stimulus_controller('modal-form', {
+               formUrl: path('app_admin_parcours_add')
+           }) }}>
+        <p class="p-0 m-0 app-button" {{ stimulus_action('modal-form', 'openModal', 'click') }}>
+          <font style="vertical-align: inherit;">Ajouter une expérience</font>
+        </p>
+        {{ include ("admin/fragments/_modal.html.twig", { modalTitle: 'Ajouter une expérience' }) }}
+      </div>
+    </div>
+    <div class="card" {{ stimulus_target('reload-content', 'content') }}>
+      {% include 'admin/parcours/_list.html.twig' %}
+    </div>
+  </div>
+{% endblock %}

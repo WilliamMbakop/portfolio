@@ -1,0 +1,23 @@
+{% set backgroundSuccess = '#17a2b8' %}
+	{% set backgroundError = '#d81b60' %}
+	{% set widthDefaultSize = '20em' %}
+	{% set titleError = 'Oops...' %}
+	{% set iconError = 'error' %}
+	
+
+
+{# } Messages flash success - Remove Success { #}
+{% for flash_success in app.flashes('success') %}
+    <div
+            class="swal2-container"
+            {{ stimulus_controller('flash-messages', {
+
+                text: "Opération effectuée avec succès",
+                width : widthDefaultSize,
+                background : backgroundSuccess
+            }) }}
+    >
+    </div>
+{% endfor %} 
+
+

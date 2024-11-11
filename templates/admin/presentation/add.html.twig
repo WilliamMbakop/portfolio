@@ -1,0 +1,117 @@
+<div class="col-12 d-flex justify-content-center">
+    {{ form_errors(form) }}
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    
+                   <div class="form-group">
+                        <!-- Label -->
+                        <label for="{{ form.name.vars.id }}" class="form-label d-block text-left font-weight-bold">{{ form_label(form.name) }}</label>
+                        <!-- Input Field -->
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }} <!-- Ajout d'une classe de contrôle de formulaire Bootstrap -->
+                        </div>
+
+                        <!-- Affichage des erreurs -->
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(form.name) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Label -->
+                        <label for="{{ form.imageFile.vars.id }}" class="form-label d-block text-left font-weight-bold">{{ form_label(form.imageFile) }}</label>
+                        <!-- Input Field -->
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }} <!-- Ajout d'une classe de contrôle de formulaire Bootstrap -->
+                        </div>
+
+                        <!-- Affichage des erreurs -->
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(form.imageFile) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Label -->
+                        <label for="{{ form.job.vars.id }}" class="form-label d-block text-left font-weight-bold">{{ form_label(form.job) }}</label>
+                        <!-- Input Field -->
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.job, {'attr': {'class': 'form-control'}}) }} <!-- Ajout d'une classe de contrôle de formulaire Bootstrap -->
+                        </div>
+
+                        <!-- Affichage des erreurs -->
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(form.job) }}
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <!-- Label -->
+                        <label for="{{ form.passion.vars.id }}" class="form-label d-block text-left font-weight-bold">{{ form_label(form.passion) }}</label>
+                        <!-- Input Field -->
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.passion, {'attr': {'class': 'form-control'}}) }} <!-- Ajout d'une classe de contrôle de formulaire Bootstrap -->
+                        </div>
+
+                        <!-- Affichage des erreurs -->
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(form.passion) }}
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <!-- Label -->
+                        <label for="{{ form.localization.vars.id }}" class="form-label d-block text-left font-weight-bold">{{ form_label(form.localization) }}</label>
+                        <!-- Input Field -->
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.localization, {'attr': {'class': 'form-control'}}) }} <!-- Ajout d'une classe de contrôle de formulaire Bootstrap -->
+                        </div>
+
+                        <!-- Affichage des erreurs -->
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(form.localization) }}
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <!-- Label -->
+                        <label for="{{ form.tel.vars.id }}" class="form-label d-block text-left font-weight-bold">{{ form_label(form.tel) }}</label>
+                        <!-- Input Field -->
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.tel, {'attr': {'class': 'form-control'}}) }} <!-- Ajout d'une classe de contrôle de formulaire Bootstrap -->
+                        </div>
+
+                        <!-- Affichage des erreurs -->
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(form.tel) }}
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <!-- Label -->
+                        <label for="{{ form.email.vars.id }}" class="form-label d-block text-left font-weight-bold">{{ form_label(form.email) }}</label>
+                        <!-- Input Field -->
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }} <!-- Ajout d'une classe de contrôle de formulaire Bootstrap -->
+                        </div>
+
+                        <!-- Affichage des erreurs -->
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(form.email) }}
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 d-block"
+                            {{ stimulus_controller('summernote', {
+                                'height' : 300,
+                                'focus' : 1,
+                                'style' :  ['style', ['bold', 'italic', 'underline', 'clear']],
+                                'font' :  ['font', ['strikethrough', 'superscript', 'subscript']],
+                                'fontsize' :  ['fontsize', ['']],
+                                'color' : ['color', ['color']],
+                                'para' : ['para', ['style', 'ul', 'ol', 'paragraph', 'height']],
+                                'insert' : ['Insert', ['link', 'hr']],
+                                'misc' : ['Misc', ['fullscreen', 'codeview', 'undo', 'redo']],
+                                'placeholder': "Description",
+                            }) }}
+                    >
+                        {{ form_row(form.description, {attr: {'class': 'summernote'}}) }}
+                    </div>
+                    
+                    {{ form_end(form) }}
+                </div>
+
+</div>

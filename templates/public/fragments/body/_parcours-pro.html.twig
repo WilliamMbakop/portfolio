@@ -1,0 +1,34 @@
+{% block body %}
+	<!-- Main node for this component -->
+
+	{% for parcours in parcourss %}
+	<div
+		class="timeline {% if loop.index != 1 %}mt-5{% endif %}">
+		<!-- Timeline time label -->
+		<div class="time-label">
+			<span class="bg-gray text-warning"> {{parcours.datedeb|date('m/Y') }} - {{parcours.datefin|date('m/Y') }}</span>
+		</div>
+		<div>
+			<!-- Before each timeline item corresponds to one icon on the left scale -->
+			{{ ux_icon('mdi:company', {class: 'timeline-icon'}) }}
+
+			<!-- Timeline item -->
+			<div
+				class="timeline-item">
+				<!-- Header. Optional -->
+				<h3 class="timeline-header text-white">
+					{{parcours.job}} - {{parcours.company}}
+				</h3>
+				<!-- Body -->
+				<div class="timeline-body">
+					{{parcours.missions | raw}}
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+		<!-- The last icon means the story is complete -->
+		<div>
+			<i class="fas fa-clock bg-gray"></i>
+		</div>
+	</div>
+{% endblock %}

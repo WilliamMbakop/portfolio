@@ -1,0 +1,10 @@
+<footer class="main-footer {{ app.request.get('_route') == 'app_register' or  app.request.get('_route') == 'app_login' ? 'mx-0' }}">
+	Réalisé par
+	{{ app.request.server.get('AUTHOR_NAME') }}
+	&copy
+	{{ "now"|date("Y") }}
+	<div class="float-right d-none d-sm-inline-block">
+		<b>Version</b>
+		{{ app.request.server.get('WEBSITE_VERSION') }}
+	</div>
+</footer>

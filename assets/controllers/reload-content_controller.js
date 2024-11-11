@@ -22,4 +22,9 @@ export default class extends Controller {
         this.contentTarget.innerHTML = await response.text();
         //console.log(response)
     }
+
+        async refreshFormContent(event) {
+        const response = await fetch(this.urlValue);
+        this.contentTarget.innerHTML = await response.text();
+    }
 }

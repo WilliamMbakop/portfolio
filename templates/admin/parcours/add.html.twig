@@ -1,0 +1,78 @@
+<div class="col-12 d-flex justify-content-center">
+    {{ form_errors(form) }}
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    
+                   <div class="form-group">
+                        <!-- Label -->
+                        <label for="{{ form.datedeb.vars.id }}" class="form-label d-block text-left font-weight-bold">{{ form_label(form.datedeb) }}</label>
+                        <!-- Input Field -->
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.datedeb, {'attr': {'class': 'form-control'}}) }} <!-- Ajout d'une classe de contrôle de formulaire Bootstrap -->
+                        </div>
+
+                        <!-- Affichage des erreurs -->
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(form.datedeb) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Label -->
+                        <label for="{{ form.datefin.vars.id }}" class="form-label d-block text-left font-weight-bold">{{ form_label(form.datefin) }}</label>
+                        <!-- Input Field -->
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.datefin, {'attr': {'class': 'form-control'}}) }} <!-- Ajout d'une classe de contrôle de formulaire Bootstrap -->
+                        </div>
+
+                        <!-- Affichage des erreurs -->
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(form.datefin) }}
+                        </div>
+                    </div>
+                      <div class="form-group">
+                        <!-- Label -->
+                        <label for="{{ form.job.vars.id }}" class="form-label d-block text-left font-weight-bold">{{ form_label(form.job) }}</label>
+                        <!-- Input Field -->
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.job, {'attr': {'class': 'form-control'}}) }} <!-- Ajout d'une classe de contrôle de formulaire Bootstrap -->
+                        </div>
+
+                        <!-- Affichage des erreurs -->
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(form.job) }}
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <!-- Label -->
+                        <label for="{{ form.company.vars.id }}" class="form-label d-block text-left font-weight-bold">{{ form_label(form.company) }}</label>
+                        <!-- Input Field -->
+                        <div class="input-group mb-3">
+                            {{ form_widget(form.company, {'attr': {'class': 'form-control'}}) }} <!-- Ajout d'une classe de contrôle de formulaire Bootstrap -->
+                        </div>
+
+                        <!-- Affichage des erreurs -->
+                        <div class="invalid-feedback d-block">
+                            {{ form_errors(form.company) }}
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 d-block"
+                            {{ stimulus_controller('summernote', {
+                                'height' : 300,
+                                'focus' : 1,
+                                'style' :  ['style', ['bold', 'italic', 'underline', 'clear']],
+                                'font' :  ['font', ['strikethrough', 'superscript', 'subscript']],
+                                'fontsize' :  ['fontsize', ['']],
+                                'color' : ['color', ['color']],
+                                'para' : ['para', ['style', 'ul', 'ol', 'paragraph', 'height']],
+                                'insert' : ['Insert', ['link', 'hr']],
+                                'misc' : ['Misc', ['fullscreen', 'codeview', 'undo', 'redo']],
+                                'placeholder': "Description",
+                            }) }}
+                    >
+                        {{ form_row(form.missions, {attr: {'class': 'summernote'}}) }}
+                    </div>
+                    
+                    {{ form_end(form) }}
+                </div>
+
+</div>

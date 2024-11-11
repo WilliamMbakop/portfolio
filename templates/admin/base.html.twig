@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Découvrez le portfolio de {{ app.request.server.get('AUTHOR_NAME') }}, étudiant en systèmes et réseaux et développement web. Explorez mes projets, compétences et réalisations.">
+		<meta name="keywords" content="informatique, systèmes, réseaux, cybersécurité, développement web, portfolio, {{ app.request.server.get('AUTHOR_NAME') }}, projets, compétences">
+		<meta name="author" content="{{ app.request.server.get('AUTHOR_NAME') }}">
+		<link rel="icon" href="{{ asset('images/favicon-16x16.png') }}" type="image/png">
+
+
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+
+	<body {{ stimulus_controller('reload-content') }} class="dark-mode hold-transition sidebar-mini layout-fixed min">
+		<div class="wrapper">
+
+			
+
+			{% include 'admin/fragments/nav/_topbar.html.twig' %}
+			{% include 'admin/fragments/nav/_aside.html.twig' %}
+
+			<div class="content-wrapper">
+				<section class="content mt-4 px-5">
+					<div class="container-fluid p-0">
+						<div class="card-body">
+							<div class="my-2" {{ stimulus_target('reload-content', 'content') }}> 
+								{% block body %}
+								{% endblock %}
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			{% include 'admin/fragments/footer/_footer.html.twig' %}
+
+			{% if app.request.server.get('RIGHT_SIDEBAR') %}
+				<aside class="control-sidebar control-sidebar-dark"></aside>
+			{% endif %}
+
+		</div> <!-- Fermeture de .wrapper -->
+	</body>
+</html>

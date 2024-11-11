@@ -2,6 +2,7 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 @import "~select2";
 @import "~admin-lte";
+@import '~summernote/dist/summernote-bs4.css';
 
 
 * {
@@ -104,4 +105,48 @@ label:not(.form-check-label):not(.custom-file-label) {
 .image-container:hover,
 .nav-link:hover:hover {
     animation: shake 0.5s;
+}
+
+
+/* Cibler le bouton spécifique et supprimer l'effet hover */
+button.badge:hover {
+    background-color: inherit;  /* Ne pas modifier la couleur de fond */
+    color: inherit;             /* Ne pas modifier la couleur du texte */
+    box-shadow: none;           /* Enlever l'ombre portée (si présente) */
+    text-decoration: none;      /* Enlever toute décoration de texte */
+}
+
+
+.vich-image img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+
+.vich-image a,
+.vich-image div {
+    display : none;
+}
+
+.note-editable {
+    text-align: left;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.presentation-description p,
+.parcours-description p {
+    margin-bottom: 0px !important;
+}
+
+/* Effet de transparence et changement de curseur */
+.app-button {
+    transition: opacity 0.3s ease, cursor 0.3s ease;
+}
+
+.app-button:hover {
+    opacity: 0.7; /* Modifie la transparence au survol */
+    cursor: pointer; /* Change le curseur en forme de main */
 }
