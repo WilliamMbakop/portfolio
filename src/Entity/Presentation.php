@@ -23,8 +23,6 @@ class Presentation
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-
-
     #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 

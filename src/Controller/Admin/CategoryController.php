@@ -10,7 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 class CategoryController extends AbstractController
 {
     #[Route('/admin/categorie', name: 'app_admin_category')]
@@ -21,6 +23,7 @@ class CategoryController extends AbstractController
 
         return $this->render($template, [
             'categories' => $categoryRepository->findAll(),
+            'title' => 'Admin | Catégories'
         ]);
     }
 
@@ -51,7 +54,7 @@ class CategoryController extends AbstractController
             }
         }
 
-        $template = 'admin/category/add.html.twig';
+        $template = 'admin/category/_add.html.twig';
 
         return $this->render(
             $template,
@@ -97,7 +100,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('app_admin_category');
         }
 
-        return $this->render('admin/category/add.html.twig', [
+        return $this->render('admin/category/_add.html.twig', [
             'form' => $form,
         ]);
     }

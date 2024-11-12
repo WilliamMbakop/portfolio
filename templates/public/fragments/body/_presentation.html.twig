@@ -11,7 +11,7 @@
                               style="max-width: 200px; max-height: 200px;">
 				</div>
 				<div class="col-6">
-					<h2 class="lead text-warning">
+					<h2 class="lead text-warning ml-1">
 						<b style="font-size: 18px;">
 						 {% set strings = [
                 presentation.name,
@@ -21,9 +21,9 @@
 							<span data-controller="symfony--ux-typed" data-symfony--ux-typed-loop-value="true" data-symfony--ux-typed-show-cursor-value="true" data-symfony--ux-typed-cursor-char-value="|" data-symfony--ux-typed-strings-value="{{ strings|json_encode|e('html_attr') }}"></span>
 						</b>
 					</h2>
-					<ul class="ml-0 mt-3 mb-0 fa-ul text-muted">
-						{{ ux_icon('mdi:location', {height: '20px', width: '18px', 'aria-hidden': true}) }}
-						{{presentation.localization}}
+					<ul class="ml-0 mt-3 mb-0 fa-ul text-muted d-flex align-items-center">
+						<li class="mr-2"> {{ ux_icon('mdi:location', {height: '25px', width: '25px', 'aria-hidden': true}) }} </li> 
+						<li class="mt-1"> {{presentation.localization}} </li> 
 					</ul>
 				</div>
 			</div>

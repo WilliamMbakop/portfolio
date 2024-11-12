@@ -10,7 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 class PresentationController extends AbstractController
 {
     #[Route('/admin/presentation', name: 'app_admin_presentation')]
@@ -21,6 +23,7 @@ class PresentationController extends AbstractController
 
         return $this->render($template, [
             'presentations' => $presentationRepository->findAll(),
+            'title' => 'Admin | Présentations'
         ]);
     }
 
@@ -51,7 +54,7 @@ class PresentationController extends AbstractController
             }
         }
 
-        $template = 'admin/presentation/add.html.twig';
+        $template = 'admin/presentation/_add.html.twig';
 
         return $this->render(
             $template,
@@ -97,7 +100,7 @@ class PresentationController extends AbstractController
             return $this->redirectToRoute('app_admin_presentation');
         }
 
-        return $this->render('admin/presentation/add.html.twig', [
+        return $this->render('admin/presentation/_add.html.twig', [
             'form' => $form,
         ]);
     }

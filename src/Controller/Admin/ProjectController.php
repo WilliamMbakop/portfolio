@@ -10,7 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 class ProjectController extends AbstractController
 {
     #[Route('/admin/projet', name: 'app_admin_project')]
@@ -21,6 +23,7 @@ class ProjectController extends AbstractController
 
         return $this->render($template, [
             'projects' => $projectRepository->findAll(),
+            'title' => 'Admin | Projets'
         ]);
     }
 
@@ -51,7 +54,7 @@ class ProjectController extends AbstractController
             }
         }
 
-        $template = 'admin/project/add.html.twig';
+        $template = 'admin/project/_add.html.twig';
 
         return $this->render(
             $template,
@@ -97,7 +100,7 @@ class ProjectController extends AbstractController
             return $this->redirectToRoute('app_admin_project');
         }
 
-        return $this->render('admin/project/add.html.twig', [
+        return $this->render('admin/project/_add.html.twig', [
             'form' => $form,
         ]);
     }

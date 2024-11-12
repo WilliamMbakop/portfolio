@@ -10,7 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 class TechnoController extends AbstractController
 {
     #[Route('/admin/techno', name: 'app_admin_techno')]
@@ -21,6 +23,7 @@ class TechnoController extends AbstractController
 
         return $this->render($template, [
             'technos' => $technoRepository->findAll(),
+            'title' => 'Admin | Technos'
         ]);
     }
 
@@ -51,7 +54,7 @@ class TechnoController extends AbstractController
             }
         }
 
-        $template = 'admin/techno/add.html.twig';
+        $template = 'admin/techno/_add.html.twig';
 
         return $this->render(
             $template,
@@ -97,7 +100,7 @@ class TechnoController extends AbstractController
             return $this->redirectToRoute('app_admin_techno');
         }
 
-        return $this->render('admin/techno/add.html.twig', [
+        return $this->render('admin/techno/_add.html.twig', [
             'form' => $form,
         ]);
     }

@@ -32,7 +32,7 @@ export default class extends Controller {
                 this.styleValue,
                 this.fontValue,
                 this.fontsizeValue,
-                //this.colorValue,
+                this.colorValue,
                this.paraValue,
                 this.insertValue,
                 this.miscValue,

@@ -138,7 +138,8 @@ button.badge:hover {
 
 .presentation-description p,
 .parcours-description p,
-.certification-description p {
+.certification-description p,
+.veille-description p {
     margin-bottom: 0px !important;
 }
 
@@ -151,3 +152,4 @@ button.badge:hover {
     opacity: 0.7; /* Modifie la transparence au survol */
     cursor: pointer; /* Change le curseur en forme de main */
 }
+

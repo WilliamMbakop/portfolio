@@ -10,7 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 class VeilleController extends AbstractController
 {
     #[Route('/admin/veille', name: 'app_admin_veille')]
@@ -21,6 +23,7 @@ class VeilleController extends AbstractController
 
         return $this->render($template, [
             'veilles' => $veilleRepository->findAll(),
+            'title' => 'Admin | Veille technologique'
         ]);
     }
 
@@ -51,7 +54,7 @@ class VeilleController extends AbstractController
             }
         }
 
-        $template = 'admin/veille/add.html.twig';
+        $template = 'admin/veille/_add.html.twig';
 
         return $this->render(
             $template,
@@ -97,7 +100,7 @@ class VeilleController extends AbstractController
             return $this->redirectToRoute('app_admin_veille');
         }
 
-        return $this->render('admin/veille/add.html.twig', [
+        return $this->render('admin/veille/_add.html.twig', [
             'form' => $form,
         ]);
     }

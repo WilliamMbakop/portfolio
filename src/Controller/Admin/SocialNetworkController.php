@@ -10,7 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 class SocialNetworkController extends AbstractController
 {
     #[Route('/admin/reseaux-sociaux', name: 'app_admin_socialnetwork')]
@@ -21,6 +23,7 @@ class SocialNetworkController extends AbstractController
 
         return $this->render($template, [
             'socialnetworks' => $socialnetworkRepository->findAll(),
+            'title' => 'Admin | Réseaux sociaux'
         ]);
     }
 
@@ -51,7 +54,7 @@ class SocialNetworkController extends AbstractController
             }
         }
 
-        $template = 'admin/socialnetwork/add.html.twig';
+        $template = 'admin/socialnetwork/_add.html.twig';
 
         return $this->render(
             $template,
@@ -97,7 +100,7 @@ class SocialNetworkController extends AbstractController
             return $this->redirectToRoute('app_admin_socialnetwork');
         }
 
-        return $this->render('admin/socialnetwork/add.html.twig', [
+        return $this->render('admin/socialnetwork/_add.html.twig', [
             'form' => $form,
         ]);
     }

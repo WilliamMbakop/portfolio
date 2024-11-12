@@ -1,9 +1,9 @@
 {% extends "admin/base.html.twig" %}
 
-{% block title %} Espace admin | Présentation{% endblock %}
+{% block title %} {{title}} {% endblock %}
 
 {% block body %}
-   <div class="mt-5 col-md-11 mx-auto position-relative" {{ stimulus_controller('reload-content', {
+   <div class="mt-5 mx-auto position-relative" {{ stimulus_controller('reload-content', {
         url: path('app_admin_veille', {ajax: 1})
     }) }}
          data-action="modal-form:success->reload-content#refreshFormContent"

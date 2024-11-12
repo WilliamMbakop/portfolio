@@ -7,7 +7,11 @@
 		<meta name="keywords" content="informatique, systèmes, réseaux, cybersécurité, développement web, portfolio, {{ app.request.server.get('AUTHOR_NAME') }}, projets, compétences">
 		<meta name="author" content="{{ app.request.server.get('AUTHOR_NAME') }}">
 		<link rel="icon" href="{{ asset('images/favicon-16x16.png') }}" type="image/png">
-
+  		<title>
+			{% block title %}
+				{{title}}
+			{% endblock %}
+   		 </title>
 
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
