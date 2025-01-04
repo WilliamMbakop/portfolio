@@ -1,61 +1,43 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" {{ stimulus_controller('menu-link') }}>
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
 	<div class="sidebar">
 		<nav class="mt-2" style="border-bottom: 1px solid #4f5962">
 			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-				<li class="nav-item mb-3" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'presentation' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 0 }) }}>
-					<a class="nav-link active">
+				<li class="nav-item mb-4">
+					 <a href="{{ path('app_public_profil_index') }}" class="nav-link {{ app.request.get('_route') == 'app_public_profil_index' ? 'active' }}">
 						{{ ux_icon('icon-park-solid:people', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 						<p>
-							Présentation
+							Profil
 						</p>
 					</a>
 				</li>
-				<li class="nav-item mb-3" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'parcours' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 1 }) }}>
-					<a class="nav-link">
+				<li class="nav-item mb-4">
+					 <a href="{{ path('app_public_parcours_index') }}" class="nav-link {{ app.request.get('_route') == 'app_public_parcours_index' ? 'active' }}">
 						{{ ux_icon('ic:round-work-history', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 						<p>
-							Parcours pro.
+							Parcours
 						</p>
 					</a>
 				</li>
-				<li class="nav-item mb-3" {{stimulus_target('menu-link', 'competences')}}>
-					<a class="nav-link">
+				<li class="nav-item mb-4">
+					 <a href="{{ path('app_public_certification_index') }}" class="nav-link {{ app.request.get('_route') == 'app_public_certification_index' ? 'active' }}">
+						{{ ux_icon('vaadin:diploma', {height: '18px', width: '18px', 'aria-hidden': true}) }}
+
+						<p>
+							Certifications
+						</p>
+					</a>
+				</li>
+				<li class="nav-item mb-4">
+					 <a href="{{ path('app_public_competence_index') }}" class="nav-link {{ app.request.get('_route') == 'app_public_competence_index' ? 'active' }}">
 						{{ ux_icon('game-icons:stairs-goal', {height: '18px', width: '18px', 'aria-hidden': true}) }}
+
 						<p>
 							Compétences
-							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
-					<ul class="nav nav-treeview" {{stimulus_target('menu-link', 'navtreeview')}}>
-						<li class="nav-item" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'competences/sys-res' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 3 }) }}>
-							<a class="nav-link">
-								{{ ux_icon('fluent-mdl2:my-network', {height: '18px', width: '18px', 'aria-hidden': true, style: 'margin-left: 16px;'}) }}
-								<p>Systèmes/Réseaux</p>
-							</a>
-						</li>
-						<li class="nav-item" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'competences/dev-web' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 4 }) }}>
-							<a class="nav-link {{ app.request.get('_route') == 'app_dev_web' ? 'active' }}">
-								{{ ux_icon('material-symbols:developer-mode-tv', {height: '18px', width: '18px', 'aria-hidden': true, style: 'margin-left: 16px;'}) }}
-								<p>Développement web</p>
-							</a>
-						</li>
-						<li class="nav-item" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'competences/collaboration' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 5 }) }}>
-							<a class="nav-link {{ app.request.get('_route') == 'app_collaboration' ? 'active' }}">
-								{{ ux_icon('fluent:people-team-16-regular', {height: '18px', width: '18px', 'aria-hidden': true, style: 'margin-left: 16px;'}) }}
-
-								<p>Collaboration</p>
-							</a>
-						</li>
-						<li class="nav-item" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'competences/certifications' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 6 }) }}>
-							<a class="nav-link {{ app.request.get('_route') == 'app_certification' ? 'active' }}">
-								{{ ux_icon('vaadin:diploma', {height: '18px', width: '18px', 'aria-hidden': true, style: 'margin-left: 16px;'}) }}
-								<p>Certifications</p>
-							</a>
-						</li>
-					</ul>
 				</li>
-				<li class="nav-item mb-3" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'projets-techniques' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 7 }) }}>
-					<a class="nav-link {{ app.request.get('_route') == 'app_projets_techniques' ? 'active' }} ">
+				<li class="nav-item mb-4">
+					 <a href="{{ path('app_public_projet_index') }}" class="nav-link {{ app.request.get('_route') == 'app_public_projet_index' ? 'active' }}">
 						{{ ux_icon('mage:light-bulb-fill', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 
 						<p>
@@ -63,8 +45,8 @@
 						</p>
 					</a>
 				</li>
-				<li class="nav-item mb-3" {{ stimulus_action('reload-content','refreshContent', 'click', { 'section': 'veille-technologique' } ) | stimulus_action('menu-link','colorize', 'click', { 'index': 8 }) }}>
-					<a class="nav-link">
+				<li class="nav-item mb-4">
+					 <a href="{{ path('app_public_veille_index') }}" class="nav-link {{ app.request.get('_route') == 'app_public_veille_index' ? 'active' }}">
 						{{ ux_icon('carbon:cloud-monitoring', {height: '18px', width: '18px', 'aria-hidden': true}) }}
 						<p>
 							Veille techno.

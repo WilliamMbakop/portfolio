@@ -23,15 +23,19 @@
 	<ul
 		class="navbar-nav ml-auto align-items-center">
 		<!-- Ajout de align-items-center -->
+
 		<li class="nav-item">
-			<a class="nav-link" href="https://www.linkedin.com/in/mbakopwilliam/" target="_blank" role="button" title="LinkedIn">
-				{{ ux_icon('devicon:linkedin', {height: '20px', width: '20px', 'aria-hidden': true, }) }}
+			<a class="nav-link" href="{{ asset('cv/cv.pdf') }}" download>
+				{{ ux_icon('fa-solid:file-pdf', {'style': 'height: 20px; width: 20px;', 'aria-hidden': 'true'}) }}
 			</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="https://github.com/WilliamMbakop" target="_blank" role="button" title="Microsoft Teams">
-				{{ ux_icon('akar-icons:github-fill', {height: '20px', width: '20px', 'aria-hidden': true, }) }}
-			</a>
-		</li>
+
+		{% for socialnetwork in socialnetworks %}
+			<li class="nav-item">
+				<a class="nav-link" href="{{socialnetwork.url}}" target="_blank" role="button" title="{{socialnetwork.name}}">
+					{{ ux_icon(socialnetwork.icone, {height: '20px', width: '20px', 'aria-hidden': true, }) }}
+				</a>
+			</li>
+		{% endfor %}
 	</ul>
 </nav>

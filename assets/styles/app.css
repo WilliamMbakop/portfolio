@@ -21,19 +21,15 @@ i {
     height: 35px;
 }
 
-[class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active, [class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active:hover, [class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active:focus {
-    background-color: rgba(239, 182, 76, 0);
-    color: rgb(239, 182, 76) !important;
-}
 
 label:not(.form-check-label):not(.custom-file-label) {
      font-weight: normal;
 }
 
-.dark-mode .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
-.dark-mode .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
+.nav-link.active
+{
   background-color: #D3D3D3 !important;
-  color: #000000 !important;
+  color: rgb(239, 182, 76) !important;
 }
 
 .time-label span {
@@ -152,4 +148,6 @@ button.badge:hover {
     opacity: 0.7; /* Modifie la transparence au survol */
     cursor: pointer; /* Change le curseur en forme de main */
 }
+
+
 

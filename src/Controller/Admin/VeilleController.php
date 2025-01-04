@@ -22,7 +22,7 @@ class VeilleController extends AbstractController
         $template = $request->get('ajax') ? 'admin/veille/_list.html.twig' : 'admin/veille/index.html.twig';
 
         return $this->render($template, [
-            'veilles' => $veilleRepository->findAll(),
+            'veilles' => $veilleRepository->findBy([], ['name' => 'ASC']),
             'title' => 'Admin | Veille technologique'
         ]);
     }

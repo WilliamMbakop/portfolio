@@ -22,7 +22,7 @@
                     }) }}>
                         <td>{{ veille.name }}</td>
                         <td class="veille-description">{{ veille.description|raw }}</td>
-                        <td>{{ veille.url }}</td>
+                        <td> <a href="{{veille.url}}" target="_blank"> {{ veille.url }} </a> </td>
 
                         <td>
                             <div class="text-center d-flex justify-content-center border-bottom-1">

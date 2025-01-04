@@ -22,7 +22,7 @@ class ParcoursController extends AbstractController
         $template = $request->get('ajax') ? 'admin/parcours/_list.html.twig' : 'admin/parcours/index.html.twig';
 
         return $this->render($template, [
-            'parcourss' => $parcoursRepository->findAll(),
+            'parcourss' => $parcoursRepository->findBy([], ['datedeb' => 'DESC']),
             'title' => 'Admin | Parcours'
         ]);
     }
