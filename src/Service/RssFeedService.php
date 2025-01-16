@@ -1,10 +1,10 @@
 <?php
-// src/Service/RssFeedService.php
+
 namespace App\Service;
 
-use Psr\Cache\CacheItemPoolInterface as CacheCacheItemPoolInterface;
+use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Component\Cache\Adapter\CacheItemPoolInterface;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class RssFeedService
 {
@@ -12,7 +12,7 @@ class RssFeedService
     private $cachePool;
 
     // Injection de dépendances pour HttpClient et Cache Pool
-    public function __construct(HttpClientInterface $client, CacheCacheItemPoolInterface $cachePool)
+    public function __construct(HttpClientInterface $client, CacheItemPoolInterface $cachePool)
     {
         $this->client = $client;
         $this->cachePool = $cachePool;
@@ -33,16 +33,31 @@ class RssFeedService
         $content = $response->getContent();
         $xml = simplexml_load_string($content);
 
+        // Initialisation du traducteur
+        $translator = new GoogleTranslate('fr');
+
         // Parsing des articles du flux RSS
         $items = [];
         foreach ($xml->channel->item as $item) {
+            $title = (string) $item->title;
+            $description = (string) $item->description;
+
+            // Traduction des titres et descriptions en français
+            $translatedTitle = $translator->translate($title);
+            $translatedDescription = $translator->translate($description);
+
             $items[] = [
-                'title' => (string) $item->title,
+                'title' => $translatedTitle,
                 'link' => (string) $item->link,
-                'description' => (string) $item->description,
+                'description' => $translatedDescription,
                 'pubDate' => (string) $item->pubDate,
             ];
         }
+
+        // Tri des articles du plus récent au plus ancien
+        usort($items, function ($a, $b) {
+            return strtotime($b['pubDate']) - strtotime($a['pubDate']);
+        });
 
         // Mise en cache des données pendant 1 heure
         $cacheItem->set($items);

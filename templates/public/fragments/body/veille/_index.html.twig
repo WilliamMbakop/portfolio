@@ -28,15 +28,7 @@
         </div>
 
         <div {{ stimulus_target('select2', 'content') }} class"mt-5">
-	<ul>
-		{% for item in items %}
-			<li class="mt-5">
-				<a href="{{ item.link }}" target="_blank" class="text-warning">{{ item.title }}</a>
-				<p>{{ item.description }}</p>
-				<small>Publié le : {{ item.pubDate }}</small>
-			</li>
-		{% endfor %}
-	</ul>
+{% include "public/fragments/body/veille/_content.html.twig" %}
 </div>
     </section>
 {% endblock %}

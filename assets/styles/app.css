@@ -26,25 +26,25 @@ label:not(.form-check-label):not(.custom-file-label) {
      font-weight: normal;
 }
 
-.nav-link.active
+/* .nav-link.active
 {
   background-color: #D3D3D3 !important;
   color: rgb(239, 182, 76) !important;
-}
+} */
 
 .time-label span {
     font-weight: 300  !important;
 }
 
 
-.main-header .nav-link:hover {
+/* .main-header .nav-link:hover {
   color: rgb(239, 182, 76) !important;
     transition: 0.2s ease-in-out;
 }
 
 .main-header .nav-link.active {
     color: rgb(239, 182, 76) !important;
-}
+} */
 
 .timeline-icon {
   background-color: gray;
@@ -149,5 +149,7 @@ button.badge:hover {
     cursor: pointer; /* Change le curseur en forme de main */
 }
 
-
+.select2-container--default .select2-results__option--selected {
+  background-color: transparent !important;
+}
 

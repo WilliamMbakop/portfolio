@@ -8,12 +8,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Service\RssFeedService;
 
 class VeilleController extends AbstractController
 {
 
     private $rssFeedService;
+    private $session;
 
     public function __construct(RssFeedService $rssFeedService)
     {
@@ -25,9 +27,16 @@ class VeilleController extends AbstractController
         Request $request,
         SocialNetworkRepository $socialNetworkRepository,
         VeilleRepository $veilleRepository,
+        SessionInterface $session,
     ): response {
 
-        $firstVeillesUrl = $veilleRepository->findFirstByIdAsc();
+        if ($session->get('veilleID') !== null) {
+            $firstVeillesUrl = $veilleRepository->findOneById($session->get('veilleID'));
+        } else {
+            $firstVeillesUrl = $veilleRepository->findFirstByIdAsc();
+        }
+
+
         $url = $firstVeillesUrl->getUrl();
 
         // On récupère le flux RSS
@@ -48,8 +57,10 @@ class VeilleController extends AbstractController
         Request $request,
         VeilleRepository $veilleRepository,
         SocialNetworkRepository $socialNetworkRepository,
+        SessionInterface $session,
     ): response {
         $veilleID = $request->query->get('veilleID');
+        $session->set('veilleID', $veilleID);
         $veille = $veilleRepository->findOneById($veilleID);
         $veilleUrl = $veille->getUrl();
         $items = $this->rssFeedService->fetchRssFeed($veilleUrl);
