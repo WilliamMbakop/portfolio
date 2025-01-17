@@ -12,7 +12,6 @@ use Symfony\Component\Routing\Attribute\Route;
 class ProjetController extends AbstractController
 {
 
-    private $rssFeedService;
 
     #[Route('/projet', name: 'app_public_projet_index')]
     public function index(
@@ -25,6 +24,23 @@ class ProjetController extends AbstractController
 
         return $this->render($template, [
             'socialnetworks' => $socialNetworkRepository->findAll(),
+            'projects' => $projectRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/projet/modal', name: 'app_public_projet_modal')]
+    public function modal(
+        Request $request,
+        SocialNetworkRepository $socialNetworkRepository,
+        ProjectRepository $projectRepository,
+    ): response {
+
+        $id = $request->query->get('id');
+
+        $template = 'public/fragments/body/projet/_showModal.html.twig';
+
+        return $this->render($template, [
+            'project' => $projectRepository->findOneById($id),
         ]);
     }
 }

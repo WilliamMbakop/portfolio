@@ -1,0 +1,16 @@
+<div class="modal-body">
+    <div
+        class="text-center">
+        <!-- Ajoute une div pour centrer uniquement l'image -->
+        <img id="projectModalImage" class="img-fluid mb-3" src="https://picsum.photos/seed/picsum/200/200" alt="Image du projet" style="max-width: 100%; height: auto;">
+    </div>
+
+    <p id="projectModalDescription">
+       {{project.description}}                                                                                                                                                                                                                                                                                                                                                                                                                Elle offre également des fonctionnalités de tri et de filtrage, permettant aux utilisateurs de gérer efficacement leur emploi du temps.
+    </p>
+    <p>
+        <strong>Technologies utilisées:</strong>
+        <span id="projectModalTechnologies">HTML, CSS, JavaScript, Bootstrap, jQuery</span>
+    </p>
+    <a id="projectModalLink" href="{{project.url}}" class="" target="_blank"> Lien Github</a>
+</div>

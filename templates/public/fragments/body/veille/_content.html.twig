@@ -4,9 +4,9 @@
 			<li class="mt-5">
 				<a href="{{ item.link }}" target="_blank" class="text-warning">{{ item.title }}</a>
 				<p>{{ item.description }}</p>
-				{# <small>Publié le {{ item.pubDate|date('l d F Y \\à H:i', 'Europe/Paris')|trans }}</small> #}
 				<small>Publié le {{ item.pubDate|format_datetime(locale='fr', pattern="EEEE dd MMMM YYYY 'à' HH:mm")|trans }}</small>
 
-				</li>	{% endfor %}
+			</li>	
+		{% endfor %}
 	</ul>
 </div>
