@@ -7,7 +7,11 @@
 				{% for project in projects %}
 					<div class="col-md-4 mb-4">
 						<div class="card project-card">
-							<img src="https://picsum.photos/seed/picsum/200/300" class="card-img-top" alt="Projet 1">
+							<img src="{{ vich_uploader_asset(project, 'imageFile') }}"
+                             alt="{{project.name }}"
+                             title="{{ project.name }}"
+                             class="card-img-top img-fluid mx-auto mt-4"
+                              style="max-width: 200px; max-height: 300px;">
 							<div class="card-body">
 								<h5 class="card-title">{{project.name}}</h5>
 								<p class="card-text mt-3">{{project.resume | raw}}</p>
@@ -20,15 +24,16 @@
 								>
 									Voir le projet
 								</div>
-									{{ include ("public/fragments/body/projet/_modal.html.twig", {
-                                        modalTitle: project.name,
-                                    }) }}
 							</div>
 						</div>
 					</div>
+					{{ include ("public/fragments/body/projet/_modal.html.twig", {
+						modalTitle: project.name,
+					}) }}
 				{% endfor %}
-				{# {% include 'public/fragments/body/projet/_modal.html.twig' %} #}
 			</div>
 	</div>
 {% endblock %}
+
+
 

@@ -24,9 +24,16 @@ class Category
     #[ORM\OneToMany(targetEntity: Techno::class, mappedBy: 'category')]
     private Collection $technos;
 
+    /**
+     * @var Collection<int, Project>
+     */
+    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'categories')]
+    private Collection $projects;
+
     public function __construct()
     {
         $this->technos = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -76,6 +83,33 @@ class Category
             if ($techno->getCategory() === $this) {
                 $techno->setCategory(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Project>
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    public function addProject(Project $project): static
+    {
+        if (!$this->projects->contains($project)) {
+            $this->projects->add($project);
+            $project->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Project $project): static
+    {
+        if ($this->projects->removeElement($project)) {
+            $project->removeCategory($this);
         }
 
         return $this;

@@ -9,13 +9,14 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
+                     <th class="col-1 text-center">Actions</th>
                     <th class="col-1">Nom</th>
                     <th class="col-1">Photo</th>
                     <th class="col-2">Résumé</th>
-                    <th class="col-4">Description</th>
+                    <th class="col-3">Description</th>
+                    <th class="col-1">Catégories</th>
                     <th class="col-2">Url</th>
                     <th class="col-1">Technos</th>
-                    <th class="col-1 text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,24 +24,6 @@
                     <tr {{ stimulus_controller('modal-form', {
                         formUrl: path('app_admin_project_edit', {id: project.id})
                     }) }}>
-                        <td>{{ project.name }}</td>
-                        <td>
-                            <img src="{{ vich_uploader_asset(project, 'imageFile') }}"
-                                 alt="Photo de {{ project.name }}"
-                                 title="Photo de {{ project.name }}"
-                                 class="img-circle elevation-2"
-                                 style="max-width: 50px; max-height: 50px;">
-                        </td>
-                        <td class="project-resume">{{ project.resume|raw }}</td>
-                        <td class="project-description">{{ project.description|raw }}</td>
-                        <td>{{ project.url }}</td>
-                        <td>
-                            <ul>
-                                {% for techno in project.techno %}
-                                    <li>{{ techno.name }}</li>
-                                {% endfor %}
-                            </ul>
-                        </td>
                         <td>
                             <div class="text-center d-flex justify-content-center border-bottom-1">
                                 <!-- Premier élément : Modal -->
@@ -55,6 +38,31 @@
                                 <!-- Troisième élément : Delete -->
                                 {% include 'admin/project/_delete.html.twig' %}
                             </div>
+                        </td>
+                        <td>{{ project.name }}</td>
+                        <td>
+                            <img src="{{ vich_uploader_asset(project, 'imageFile') }}"
+                                 alt="Photo de {{ project.name }}"
+                                 title="Photo de {{ project.name }}"
+                                 class="img-circle elevation-2"
+                                 style="max-width: 50px; max-height: 50px;">
+                        </td>
+                        <td class="project-resume">{{ project.resume|raw }}</td>
+                        <td class="project-description">{{ project.description|raw }}</td>
+                        <td>
+                            <ul>
+                                {% for category in project.categories %}
+                                    <li>{{ category.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>{{ project.url }}</td>
+                        <td>
+                            <ul>
+                                {% for techno in project.techno %}
+                                    <li>{{ techno.name }}</li>
+                                {% endfor %}
+                            </ul>
                         </td>
                     </tr>
                 {% else %}

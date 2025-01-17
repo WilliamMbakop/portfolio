@@ -1,8 +1,10 @@
 <div class="modal-body">
-    <div
-        class="text-center">
-        <!-- Ajoute une div pour centrer uniquement l'image -->
-        <img id="projectModalImage" class="img-fluid mb-3" src="https://picsum.photos/seed/picsum/200/200" alt="Image du projet" style="max-width: 100%; height: auto;">
+    <div class="text-center mb-3">
+    <img src="{{ vich_uploader_asset(project, 'imageFile') }}"
+            alt="{{project.name }}"
+            title="{{ project.name }}"
+            class="card-img-top img-fluid mx-auto mt-4"
+        style="max-width: 1000px;">
     </div>
 
     <p id="projectModalDescription">
@@ -10,7 +12,14 @@
     </p>
     <p>
         <strong>Technologies utilisées:</strong>
-        <span id="projectModalTechnologies">HTML, CSS, JavaScript, Bootstrap, jQuery</span>
+        <span id="projectModalTechnologies">
+
+            {% for technos in project.techno %}
+                {{technos.name}} {% if not loop.last %}, {% endif %}
+            {% endfor %}
+        
+        </span>
     </p>
-    <a id="projectModalLink" href="{{project.url}}" class="" target="_blank"> Lien Github</a>
+        
+    <p class="text-white text-bold"> Documentation: <a id="projectModalLink" href="{{project.url}}" target="_blank"> {{project.url}} </a></p>
 </div>

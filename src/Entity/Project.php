@@ -49,6 +49,7 @@ class Project
     public function __construct()
     {
         $this->techno = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -94,6 +95,12 @@ class Project
 
     #[ORM\Column(nullable: true)]
     private ?string $imageName = null;
+
+    /**
+     * @var Collection<int, Category>
+     */
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'projects')]
+    private Collection $categories;
 
     public function getImageFile(): ?File
     {
@@ -177,6 +184,30 @@ class Project
     public function removeTechno(Techno $techno): static
     {
         $this->techno->removeElement($techno);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): static
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): static
+    {
+        $this->categories->removeElement($category);
 
         return $this;
     }

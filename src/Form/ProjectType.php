@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Project;
 use App\Entity\Techno;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -51,6 +52,11 @@ class ProjectType extends AbstractType
             ])
             ->add('techno', EntityType::class, [
                 'class' => Techno::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+            ])
+            ->add('categories', EntityType::class, [
+                'class' => Category::class,
                 'choice_label' => 'name',
                 'multiple' => true,
             ])

@@ -7,9 +7,9 @@ export default class extends Controller {
 
       async show(event) {
 
-             const params = new URLSearchParams({
-			id: 2,
-		});
+            const params = new URLSearchParams({
+                id: event.params.id,
+            });
 
         this.modalBodyTarget.innerHTML = 'Chargement...';
         this.modal = new Modal(this.modalTarget);
