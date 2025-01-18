@@ -8,6 +8,12 @@
 					{{ item.pubDate|format_datetime(locale='fr', pattern="EEEE dd MMMM YYYY 'à' HH:mm")|trans }}</small>
 
 			</li>
+		{% else %}
+			<div class="col-md-12">
+				<div class="alert alert-warning">
+					Aucun donnée n'a été trouvée.
+				</div>
+			</div>
 		{% endfor %}
 	</ul>
 </div>
