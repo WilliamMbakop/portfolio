@@ -59,7 +59,7 @@ class VeilleController extends AbstractController
         SocialNetworkRepository $socialNetworkRepository,
         SessionInterface $session,
     ): response {
-        $veilleID = $request->query->get('veilleID');
+        $veilleID = $request->query->get('selectedOptionValue');
         $session->set('veilleID', $veilleID);
         $veille = $veilleRepository->findOneById($veilleID);
         $veilleUrl = $veille->getUrl();

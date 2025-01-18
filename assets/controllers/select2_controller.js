@@ -20,16 +20,16 @@ export default class extends Controller {
   async onSelectChange(event) {
 
       const selectedOption = $(event.currentTarget).find('option:selected');
-    const selectedId = selectedOption.attr('id');
+      const selectedId = selectedOption.attr('id');
 
-    console.log(selectedId)
+    // console.log(selectedId)
 
 
   // Récupérer la valeur sélectionnée
   const selectedValue = $(event.target).val()
 
    const params = new URLSearchParams({
-            veilleID: selectedValue,
+            selectedOptionValue: selectedValue,
 
         });
 

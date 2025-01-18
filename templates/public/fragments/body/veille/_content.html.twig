@@ -1,12 +1,13 @@
- <div {{ stimulus_target('select2', 'content') }} class"mt-5">
-	<ul>
+<div {{ stimulus_target('select2', 'content') }} class"mt-3">
+	<ul class="p-0">
 		{% for item in items %}
 			<li class="mt-5">
 				<a href="{{ item.link }}" target="_blank" class="text-warning">{{ item.title }}</a>
 				<p>{{ item.description }}</p>
-				<small>Publié le {{ item.pubDate|format_datetime(locale='fr', pattern="EEEE dd MMMM YYYY 'à' HH:mm")|trans }}</small>
+				<small>Publié le
+					{{ item.pubDate|format_datetime(locale='fr', pattern="EEEE dd MMMM YYYY 'à' HH:mm")|trans }}</small>
 
-			</li>	
+			</li>
 		{% endfor %}
 	</ul>
 </div>

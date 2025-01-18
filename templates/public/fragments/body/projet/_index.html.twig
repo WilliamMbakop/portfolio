@@ -1,39 +1,21 @@
 {% extends 'public/base.html.twig' %}
 
 {% block body %}
-	<div class="card card-success">
-		<div class="card-body">
-			<div class="row" {{ stimulus_controller('open-modal', {url: path('app_public_projet_modal')} ) }}>
-				{% for project in projects %}
-					<div class="col-md-4 mb-4">
-						<div class="card project-card">
-							<img src="{{ vich_uploader_asset(project, 'imageFile') }}"
-                             alt="{{project.name }}"
-                             title="{{ project.name }}"
-                             class="card-img-top img-fluid mx-auto mt-4"
-                              style="max-width: 200px; max-height: 300px;">
-							<div class="card-body">
-								<h5 class="card-title">{{project.name}}</h5>
-								<p class="card-text mt-3">{{project.resume | raw}}</p>
-								<div class="btn btn-primary"
-									data-toggle="modal" 
-									data-target="#projectModal" 
-									data-title="Projet 1: Application Web" 
-									data-description="Détails supplémentaires sur l'application web. Technologies utilisées : HTML, CSS, JavaScript."
-									{{ stimulus_action('open-modal', 'show', 'click', { 'id': project.id }) }}
-								>
-									Voir le projet
-								</div>
-							</div>
-						</div>
-					</div>
-					{{ include ("public/fragments/body/projet/_modal.html.twig", {
-						modalTitle: project.name,
-					}) }}
-				{% endfor %}
+	<section class="content" {{ stimulus_controller('select2', { url: path('app_public_project_show') } ) }}>
+		<div class="d-flex flex-column align-items-left mb-5">
+			<div class="form-group" style="min-width: 200px; max-width: 300px; width: 100%;">
+				<select name="category-project" class="form-control select2 mb-3" required style="width: 100%;" {{ stimulus_target('select2', 'select') }}>
+					<option id="T" value="T">Toutes les catégories</option>
+					{% for key, category in categories %}
+						<option class="text-white" id="{{ key }}" value="{{ key }}" {% if categoryID == key %} selected {% endif %}>
+							{{ categories[key] }}
+						</option>
+					{% endfor %}
+				</select>
 			</div>
-	</div>
+		</div>
+		<div {{ stimulus_target('select2', 'content') }} class"mt-5">
+			{% include "public/fragments/body/projet/_content.html.twig" %}
+		</div>
+	</section>
 {% endblock %}
-
-
-
