@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class ProjetController extends AbstractController
 {
 
-    #[Route('/projet', name: 'app_public_projet_index')]
+    #[Route('/projets', name: 'app_public_projet_index')]
     public function index(
         Request $request,
         SocialNetworkRepository $socialNetworkRepository,
@@ -66,7 +66,7 @@ class ProjetController extends AbstractController
     }
 
 
-    #[Route('/projet/show', name: 'app_public_project_show')]
+    #[Route('/projets/show', name: 'app_public_project_show')]
     public function _show(
         Request $request,
         ProjectRepository $projectRepository,
@@ -91,7 +91,7 @@ class ProjetController extends AbstractController
         ]);
     }
 
-    #[Route('/projet/modal', name: 'app_public_projet_modal')]
+    #[Route('/projets/modal', name: 'app_public_projet_modal')]
     public function modal(
         Request $request,
         ProjectRepository $projectRepository,
